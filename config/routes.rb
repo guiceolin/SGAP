@@ -2,6 +2,9 @@ SGAP::Application.routes.draw do
 
   resource :session, only: [:new,:create,:destroy]
   resource :users
+
+  get 'sign_in',  to: 'sessions#new'
+  get 'sign_out', to: 'sessions#destroy'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
