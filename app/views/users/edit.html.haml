@@ -1,0 +1,6 @@
+.well
+  %h2= t('.edit')
+  = simple_form_for @user, url: users_path, method: :put do |f|
+    = render partial: 'form', locals: { f: f }
+    .form-actions
+      = f.submit input_html: { class: 'btn' }
