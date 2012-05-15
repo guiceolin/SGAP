@@ -1,0 +1,12 @@
+.login-box
+  = form_tag session_path do
+    %p
+      = label_tag :email
+      = text_field_tag :email, params[:email]
+    %p
+      = label_tag :password
+      = password_field_tag :password
+    %p.submit
+      = submit_tag "Entrar"
+    //%p.forget
+    // = link_to "Esqueci minha senha", new_password_path(resource_name)
