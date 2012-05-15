@@ -1,11 +1,12 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :username
+  attr_accessible :email, :username, :name, :password, :password_confirmation
   attr_accessor :password
   attr_protected :crypted_password, :salt
 
   validates :password, confirmation: true, presence: { on: :create }
   validates :email, uniqueness: true, presence: true
   validates :username, uniqueness: true, presence: true
+  validates :name, presence: true
 
   before_save :encrypt_password
 
@@ -22,8 +23,6 @@ class User < ActiveRecord::Base
   def encrypt(password, salt)
     BCrypt::Engine.hash_secret(password, salt)
   end
-
-
 
   private
 
