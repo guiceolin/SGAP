@@ -1,0 +1,9 @@
+!!!
+%html
+  %head
+    %title Dashboard
+    = stylesheet_link_tag 'session', :media => 'screen, projection'
+    = javascript_include_tag :defaults
+    = csrf_meta_tag
+  %body
+    = yield
