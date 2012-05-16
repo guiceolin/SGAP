@@ -1,0 +1,20 @@
+.well
+  %h1= t('.header')
+  %table.table.table-bordered.table-striped.table.condensed
+    %thead
+      %tr
+        %th
+          = t('.name')
+        %th
+          = t('.code')
+        %th
+          = t('.description')
+    %tbody
+      - @subjects.each do |s|
+        %tr
+          %td
+            = s.name
+          %td
+            = s.code
+          %td
+            = s.description
