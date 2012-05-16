@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
 
   before_save :encrypt_password
 
+  def to_s
+    name
+  end
 
   def self.authenticate(email,password)
     user = find_by_email(email)
