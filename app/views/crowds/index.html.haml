@@ -2,11 +2,11 @@
   %thead
     %tr
       %th
-        = t('.name')
+        = Crowd.human_attribute_name :name
       %th
-        = t('.subject')
+        = Subject.model_name.human(count: :many)
       %th
-        = t('.professor')
+        = Professor.model_name.human(count: :many)
   %tbody
     - @crowds.each do |c|
       %tr

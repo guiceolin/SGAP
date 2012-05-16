@@ -4,11 +4,11 @@
     %thead
       %tr
         %th
-          = t('.name')
+          = Subject.human_attribute_name :name
         %th
-          = t('.code')
+          = Subject.human_attribute_name :code
         %th
-          = t('.description')
+          = Subject.human_attribute_name :description
     %tbody
       - @subjects.each do |s|
         %tr
