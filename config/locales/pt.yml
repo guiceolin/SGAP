@@ -1,0 +1,11 @@
+pt:
+  activerecord:
+    models:
+      professor:
+        one: Professor
+        others: Professores
+    attributes:
+      professor:
+        name: Nome
+        username: Nome de usuario
+        email: Email
