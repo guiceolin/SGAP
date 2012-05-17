@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  description: MyText
+  end_date: 2012-05-15 18:17:59
+  professor: 
+
+two:
+  name: MyString
+  description: MyText
+  end_date: 2012-05-15 18:17:59
+  professor: 

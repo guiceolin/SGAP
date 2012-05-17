@@ -2,7 +2,7 @@ SGAP::Application.routes.draw do
 
   resource :session, only: [:new,:create,:destroy]
   resource :users
-  resources :subjects, :crowds, :professors
+  resources :subjects, :crowds, :professors, :enunciations
 
   get 'sign_in',  to: 'sessions#new'
   get 'sign_out', to: 'sessions#destroy'
@@ -55,7 +55,7 @@ SGAP::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'profesors#index'
 
   # See how all your routes lay out with "rake routes"
 

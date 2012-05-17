@@ -216,6 +216,9 @@ pt:
       subject:
         one: Disciplina
         other: Disciplinas
+      enunciation:
+        one: Enunciado
+        other: Enunciados
     attributes:
       professor:
         name: Nome
@@ -233,3 +236,7 @@ pt:
         name: Nome da Disciplina
         code: Código da disciplina
         description: Descrição
+      enunciation:
+        name: Nome do Enunciado
+        description: Descrição do enunciado
+        end_date: Data de entrega
