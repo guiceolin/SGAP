@@ -1,11 +1,19 @@
 class Crowd < ActiveRecord::Base
 
-  attr_accessible :name, :professor_id, :subject_id
+  attr_accessible :name, :professor_id, :subject_id, :year, :semester
 
-  validates :name, presence: true, uniqueness: { scope: [:professor_id,:subject_id] }
+  validates :name, presence: true, uniqueness: { scope: [:professor_id,:subject_id,:year,:semester] }
   validates :professor, presence: true
   validates :subject, presence: true
+  validates :year, presence: true
+  validates :semester, presence: true
 
   belongs_to :professor
   belongs_to :subject
+
+  def self.semesters_collection_for_select
+    (1..2).inject([]) do |memo,current|
+      memo << [human_attribute_name(:semester, count: current), current]
+    end
+  end
 end

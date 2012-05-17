@@ -1,6 +1,10 @@
 %h1= @crowd.name
-%h2= t('.professor')
+%h2= Professor.model_name.human
 %p= @crowd.professor
-%h2= t('.subject')
+%h2= Subject.model_name.human
 %p= @crowd.subject
+%h3
+  = Crowd.human_attribute_name(:semester, count: @crowd.semester)
+  \-
+  = @crowd.year
 

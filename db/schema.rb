@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120515181639) do
-ActiveRecord::Schema.define(:version => 20120516012008) do
+ActiveRecord::Schema.define(:version => 20120516234129) do
 
   create_table "crowds", :force => true do |t|
     t.string   "name"
@@ -20,10 +19,13 @@ ActiveRecord::Schema.define(:version => 20120516012008) do
     t.integer  "subject_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "semester"
+    t.integer  "year"
   end
 
   add_index "crowds", ["professor_id"], :name => "index_crowds_on_professor_id"
   add_index "crowds", ["subject_id"], :name => "index_crowds_on_subject_id"
+
   create_table "subjects", :force => true do |t|
     t.string   "name"
     t.string   "code"

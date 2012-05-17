@@ -225,6 +225,10 @@ pt:
         name: Nome
         professor: Professor Responsavel
         subject: Disciplina
+        semester:
+          one: "1º Semestre"
+          other: "2º Semestre"
+        year: Ano
       subject:
         name: Nome da Disciplina
         code: Código da disciplina

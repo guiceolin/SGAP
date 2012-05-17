@@ -1,3 +1,5 @@
 = f.input :name
 = f.association :professor
 = f.association :subject
+= f.input :semester, collection: Crowd.semesters_collection_for_select
+= f.input :year
