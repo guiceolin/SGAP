@@ -219,6 +219,9 @@ pt:
       enunciation:
         one: Enunciado
         other: Enunciados
+      student:
+        one: Estudante
+        other: Estudantes
     attributes:
       professor:
         name: Nome
