@@ -1,6 +1,6 @@
 class CrowdsController < ApplicationController
 
-  respond_to :html
+  respond_to :html, :json
   def index
     @crowds = Crowd.all
     respond_with @crowds

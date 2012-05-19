@@ -2,7 +2,11 @@ SGAP::Application.routes.draw do
 
   resource :session, only: [:new,:create,:destroy]
   resource :users
-  resources :subjects, :crowds, :professors, :enunciations
+  resources :subjects, :professors, :enunciations
+  resources :crowds do
+    resources :enrollments
+  end
+  resources :students, only: :index
   resources :enrollments, only: :create
 
   get 'sign_in',  to: 'sessions#new'
