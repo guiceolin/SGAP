@@ -1,18 +1,6 @@
-%table.table.table-stripped.table-bordered.table-compensed
-  %thead
-    %tr
-      %th
-        = Crowd.human_attribute_name :name
-      %th
-        = Subject.model_name.human(count: :many)
-      %th
-        = Professor.model_name.human(count: :many)
-  %tbody
-    - @crowds.each do |c|
-      %tr
-        %td
-          = c.name
-        %td
-          = c.subject
-        %td
-          = c.professor
+#crowds
+:javascript
+  $(function() {
+    window.router = new SGAP.Routers.CrowdsRouter({crowds: #{@crowds.to_json.html_safe}});
+    Backbone.history.start();
+  });

@@ -10,6 +10,7 @@ gem 'sqlite3'
 gem 'simple_form'
 gem 'haml'
 gem 'bcrypt-ruby', :require => 'bcrypt'
+gem 'rails-backbone'
 
 # Gems used only for assets and not required
 # in production environments by default.

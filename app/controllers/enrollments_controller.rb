@@ -12,4 +12,7 @@ class EnrollmentsController < ApplicationController
     @enrollment = Enrollment.find_by_id(params[:id])
     respond_with(@enrollment)
   end
+  def index
+    respond_with(@enrollments = Enrollment.find_by_crowd_id(params[:crowd_id]))
+  end
 end
