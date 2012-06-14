@@ -1,0 +1,13 @@
+%td
+  = @name
+%td
+  = @semester
+%td
+  = @year
+%td
+  = @professor_id
+%td
+  = @subject_id
+%td
+  %a.btn{href: "#/#{@id}/edit"} Editar
+  %a.btn{href: "#/#{@id}/destroy"} Remover

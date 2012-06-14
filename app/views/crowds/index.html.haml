@@ -1,6 +1,6 @@
 #crowds
 :javascript
   $(function() {
-    window.router = new SGAP.Routers.CrowdsRouter({crowds: #{@crowds.to_json.html_safe}});
+    window.router = new SGAP.Routers.CrowdsRouter({});
     Backbone.history.start();
   });

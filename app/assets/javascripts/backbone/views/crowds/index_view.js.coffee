@@ -14,7 +14,9 @@ class SGAP.Views.Crowds.IndexView extends Backbone.View
     @$("tbody").append(view.render().el)
 
   render: =>
-    $(@el).html(@template(crowds: @options.crowds.toJSON() ))
-    @addAll()
+    @options.crowds.fetch
+      success: =>
+        $(@el).html(@template(crowds: @options.crowds.toJSON() ))
+        @addAll()
 
     return this

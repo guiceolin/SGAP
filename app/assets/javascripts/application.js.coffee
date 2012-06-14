@@ -13,6 +13,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require jquery-ui-1.8.20.custom.min
+#= require hamlcoffee
 #= require underscore
 #= require backbone
 #= require backbone_rails_sync

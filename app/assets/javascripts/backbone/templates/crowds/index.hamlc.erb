@@ -1,0 +1,18 @@
+%table.table.table-stripped.table-bordered.table-compensed
+  %thead
+    %tr
+      %th
+        <%= Crowd.human_attribute_name :name %>
+      %th
+        Semestre
+      %th
+        Ano
+      %th
+        <%= Subject.model_name.human %>
+      %th
+        <%= Professor.model_name.human %>
+      %th
+        Ações
+  %tbody
+
+%a.btn{href: '#/new'} Nova Turma
