@@ -12,11 +12,8 @@ class CrowdsController < ApplicationController
 
   def create
     @crowd = Crowd.new(params[:crowd])
-    if @crowd.save
-      respond_with @crowd
-    else
-      render :new
-    end
+    @crowd.save
+    respond_with @crowd
   end
 
   def edit
