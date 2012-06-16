@@ -1,0 +1,14 @@
+%form.form-horizontal#new-crowd
+  %fieldset
+    %legend
+      Nova Turma
+    - %W{name year semester subject professor}.each do |field|
+      .control-group
+        %label{ for: field, class: 'control-label' }
+          = Crowd.human_attribute_name field
+        .controls
+          = text_field_tag(field, "<%= @#{field} %>".html_safe)
+          %span.help-inline
+  .form-actions
+    = submit_tag 'Save', class: 'btn btn-primary save'
+    = link_to 'Voltar', '#/index', class: :btn
