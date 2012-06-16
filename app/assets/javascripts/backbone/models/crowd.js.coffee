@@ -7,7 +7,6 @@ class SGAP.Models.Crowd extends Backbone.Model
 
 
   defaults:
-    id: null
     name: null
     semester: null
     year: null
