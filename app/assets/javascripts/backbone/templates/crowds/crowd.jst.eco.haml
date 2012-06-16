@@ -9,5 +9,5 @@
 %td
   <%= @subject_id %>
 %td
-  = link_to 'Editar', "#/<%= @id %>/edit"
-  = link_to 'Remover', "#/<%= @id %>/destroy"
+  = link_to 'Editar', "#/<%= @id %>/edit".html_safe
+  = link_to 'Remover', "#/<%= @id %>/destroy".html_safe
