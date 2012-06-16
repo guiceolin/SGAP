@@ -231,7 +231,8 @@ pt:
         name: Nome
         professor: Professor Responsavel
         subject: Disciplina
-        semester:
+        semester: Semestre
+        semesters:
           one: "1º Semestre"
           other: "2º Semestre"
         year: Ano
