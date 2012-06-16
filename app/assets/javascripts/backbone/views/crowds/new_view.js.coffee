@@ -12,6 +12,7 @@ class SGAP.Views.Crowds.NewView extends Backbone.View
 
     @model.bind("change:errors", () =>
       this.render()
+      utils.displayValidationErrors(@model.attributes.errors)
     )
 
   save: (e) ->
@@ -26,7 +27,7 @@ class SGAP.Views.Crowds.NewView extends Backbone.View
         window.location.hash = "/#{@model.id}"
 
       error: (crowd, jqXHR) =>
-        @model.set({errors: $.parseJSON(jqXHR.responseText)})
+        @model.set({errors: $.parseJSON(jqXHR.responseText).errors})
     )
 
   render: ->
