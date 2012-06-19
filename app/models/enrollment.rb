@@ -6,6 +6,6 @@ class Enrollment < ActiveRecord::Base
   attr_accessible :student_id, :crowd_id
 
   def as_json options={}
-    super include: [:student, :crowd]
+    super include: :crowd
   end
 end
