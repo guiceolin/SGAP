@@ -6,7 +6,7 @@ SGAP::Application.routes.draw do
   resources :crowds do
     resources :enrollments
   end
-  resources :students, only: :index
+  resources :students, only: [:index, :show]
   resources :enrollments, only: :create
 
   get 'sign_in',  to: 'sessions#new'
