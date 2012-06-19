@@ -11,11 +11,16 @@ class SGAP.Views.Enrollments.EnrollmentView extends Backbone.View
   destroy: () ->
     @model.destroy()
     this.remove()
-
     return false
 
-  render: ->
+  render: =>
     $(@el).html(@template(@model.toJSON() ))
+    @model.student.set
+      id: @model.attributes.student_id
+    @model.student.fetch
+      success: =>
+        view = new SGAP.Views.Students.StudentView(model: @model.student)
+        @$('.name').html(view.render())
     return this
 
 

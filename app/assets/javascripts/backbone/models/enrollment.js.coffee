@@ -1,6 +1,9 @@
 class SGAP.Models.Enrollment extends Backbone.Model
   paramRoot: 'enrollment'
 
+  initialize: ->
+    @student = new SGAP.Models.Student
+
   defaults:
     crowd_id: null
     student_id: null
