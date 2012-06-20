@@ -15,12 +15,9 @@ class SGAP.Views.Enrollments.EnrollmentView extends Backbone.View
 
   render: =>
     $(@el).html(@template(@model.toJSON() ))
-    @model.student.set
-      id: @model.attributes.student_id
-    @model.student.fetch
-      success: =>
-        view = new SGAP.Views.Students.StudentView(model: @model.student)
-        @$('.name').html(view.render())
+    @model.student = @collection.get(@model.attributes.student_id)
+    view = new SGAP.Views.Students.StudentView(model: @model.student)
+    @$('.name').html(view.render())
     return this
 
 
