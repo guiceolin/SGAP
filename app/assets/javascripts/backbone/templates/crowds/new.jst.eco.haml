@@ -2,7 +2,7 @@
   %fieldset
     %legend
       Nova Turma
-    - %W{name year semester subject professor}.each do |field|
+    - %W{name year semester subject_id professor_id}.each do |field|
       .control-group
         %label{ for: field, class: 'control-label' }
           = Crowd.human_attribute_name field
