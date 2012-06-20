@@ -1,0 +1,17 @@
+%h1
+  <%= name %> - <%= semester %>/<%= year %>
+%h2
+  = Professor.model_name.human
+%p
+  <%= professor_id %>
+%h2
+  = Subject.model_name.human
+%p
+  <%= subject_id %>
+
+%h2
+  = Enrollment.model_name.human
+
+<div id='enrollments'></div>
+
+<a href="#/index">Back</a>
