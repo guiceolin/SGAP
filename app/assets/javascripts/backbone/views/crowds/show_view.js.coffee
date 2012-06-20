@@ -9,6 +9,6 @@ class SGAP.Views.Crowds.ShowView extends Backbone.View
     $(@el).html(@template(@model.toJSON() ))
     @model.enrollments.fetch
       success: =>
-        enrollmentsView = new SGAP.Views.Enrollments.IndexView({enrollments: @model.enrollments})
+        enrollmentsView = new SGAP.Views.Enrollments.IndexView({crowd: @model})
         @$("#enrollments").html(enrollmentsView.render().el)
     return this
