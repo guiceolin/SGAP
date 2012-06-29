@@ -1,4 +1,4 @@
-class EnrollmentsController < ApplicationController
+class Admin::EnrollmentsController < ApplicationController
   respond_to :json
   def create
     @enrollment = Enrollment.new(params[:enrollment])
