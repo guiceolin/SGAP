@@ -2,14 +2,16 @@ SGAP::Application.routes.draw do
 
   resource :session, only: [:new,:create,:destroy]
   resource :users
-  resources :subjects, :professors, :enunciations
+  resources :enunciations
+
   namespace :admin do
+    resources :students, only: :index
+    resources :enrollments, only: :create
+    resources :subjects, :professors
     resources :crowds do
       resources :enrollments
     end
   end
-  resources :students, only: :index
-  resources :enrollments, only: :create
 
   get 'sign_in',  to: 'sessions#new'
   get 'sign_out', to: 'sessions#destroy'

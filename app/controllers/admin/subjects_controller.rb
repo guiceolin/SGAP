@@ -1,4 +1,4 @@
-class SubjectsController < ApplicationController
+class Admin::SubjectsController < ApplicationController
   respond_to :html
 
   def index
@@ -12,7 +12,7 @@ class SubjectsController < ApplicationController
   def create
     @subject = Subject.new(params[:subject])
     if @subject.save
-      respond_with @subject
+      respond_with :admin, @subject
     else
       render :new
     end
@@ -20,19 +20,19 @@ class SubjectsController < ApplicationController
 
   def show
     @subject = Subject.find_by_id(params[:id])
-    respond_with @subject
+    respond_with :admin, @subject
   end
 
   def edit
     @subject = Subject.find_by_id(params[:id])
-    respond_with @subject
+    respond_with :admin, @subject
   end
 
   def update
     @subject = Subject.find_by_id(params[:id])
     @subject.update_attributes(params[:subject])
     if @subject.save
-      respond_with @subject
+      respond_with :admin, @subject
     else
       render :edit
     end

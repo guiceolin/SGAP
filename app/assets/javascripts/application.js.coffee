@@ -17,7 +17,7 @@
 $ ->
   $('#base-tr').hide()
   $('#student-add').autocomplete
-    source: '/students/'
+    source: '/admin/students/'
     minLength: 2
     select: (event, ui) ->
       crowd_id = $(location).attr('href').split('/').pop()
@@ -33,7 +33,7 @@ class Enrollment
   create: (crowd_id, student_id, callback = (self)-> ) ->
     self = this
     $.ajax
-      url: '/enrollments/'
+      url: '/admin/enrollments/'
       dataType: 'json'
       type: 'POST'
       data:

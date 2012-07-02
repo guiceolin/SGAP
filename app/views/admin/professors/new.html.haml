@@ -1,4 +1,4 @@
-= simple_form_for @professor do |f|
+= simple_form_for [:admin, @professor] do |f|
   = render partial: 'form', locals: { f:f }
   .control-group
     = f.submit html_input: { class: 'btn' }

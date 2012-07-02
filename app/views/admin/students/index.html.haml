@@ -1,0 +1,18 @@
+%table.table.table-stripped.table-bordered.table-compensed
+  %thead
+    %tr
+      %th
+        = Student.human_attribute_name :name
+      %th
+        = Student.human_attribute_name :username
+      %th
+        = Student.human_attribute_name :email
+  %tbody
+    - @students.each do |s|
+      %tr
+        %td
+          = s.name
+        %td
+          = s.username
+        %td
+          = s.email
