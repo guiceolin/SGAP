@@ -2,7 +2,7 @@ class Admin::StudentsController < ApplicationController
   respond_to :json, :html
   def index
     @students = Student.search(params[:term])
-     respond_with @students
+    respond_with :admin, @students
   end
 
   def new
@@ -12,7 +12,7 @@ class Admin::StudentsController < ApplicationController
   def create
     @student = Student.new(params[:student])
     @student.save
-    respond_with @student
+    respond_with :admin, @student
   end
 
   def edit
@@ -23,6 +23,6 @@ class Admin::StudentsController < ApplicationController
     @student = Student.find_by_id(params[:id])
     @student.update_attributes(params[:student])
     @student.save
-    respond_with @student
+    respond_with :admin, @student
   end
 end
