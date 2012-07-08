@@ -1,18 +1,29 @@
-%table.table.table-stripped.table-bordered.table-compensed
-  %thead
-    %tr
-      %th
-        = Crowd.human_attribute_name :name
-      %th
-        = Subject.model_name.human(count: :many)
-      %th
-        = Professor.model_name.human(count: :many)
-  %tbody
-    - @crowds.each do |c|
+.header
+  .title
+    %h1
+      = Crowd.model_name.human(count: :many)
+  .actions
+    =link_to "Nova Turma", new_admin_crowd_path, class: 'btn btn-primary'
+  %br.clear
+.body
+  %table.table.table-stripped.table-compensed
+    %thead
       %tr
-        %td
-          = c.name
-        %td
-          = c.subject
-        %td
-          = c.professor
+        %th
+          = Crowd.human_attribute_name :name
+        %th
+          = Subject.model_name.human(count: :one)
+        %th
+          = Professor.model_name.human(count: :one)
+        %th
+    %tbody
+      - @crowds.each do |c|
+        %tr
+          %td
+            =link_to c.name, admin_crowd_path(c)
+          %td
+            =link_to c.subject, admin_subject_path(c.subject)
+          %td
+            =link_to c.professor, admin_professor_path(c.professor)
+          %td
+            =link_to content_tag(:i, '', class: 'icon-pencil'), edit_admin_crowd_path(c)
