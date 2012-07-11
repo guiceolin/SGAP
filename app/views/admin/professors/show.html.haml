@@ -1,7 +1,10 @@
-%h1= @professor.name
-%h2= @professor.crowds.model_name.human(:count => @professor.crowds.size)
-- @professor.crowds.each do |crowd|
-  %p= crowd.name
-%h2= @professor.subjects.model_name.human(:count => @professor.subjects.size)
-- @professor.subjects.each do |subject|
-  %p=subject.name
+.header.block
+  %h1= @professor.name
+.block
+  %h2= @professor.crowds.model_name.human(:count => @professor.crowds.size)
+  - @professor.crowds.each do |crowd|
+    %p= crowd.name
+.block
+  %h2= @professor.subjects.model_name.human(:count => @professor.subjects.size)
+  - @professor.subjects.each do |subject|
+    %p=subject.name

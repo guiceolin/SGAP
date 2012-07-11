@@ -1,4 +1,8 @@
-= simple_form_for [:admin, @professor] do |f|
-  = render partial: 'form', locals: { f:f }
-  .control-group
-    = f.submit html_input: { class: 'btn' }
+.block.header
+  %h1
+    Novo Professor
+.block
+  = simple_form_for [:admin, @professor], html:{ class: 'form-horizontal' } do |f|
+    = render partial: 'form', locals: { f:f }
+    .form-actions
+      = f.submit html_input: { class: 'btn' }

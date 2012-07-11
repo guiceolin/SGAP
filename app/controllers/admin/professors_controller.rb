@@ -40,4 +40,10 @@ class Admin::ProfessorsController < ApplicationController
     @professor = Professor.find_by_id(params[:id])
     respond_with :admin, @professor
   end
+
+  def destroy
+    @professor = Professor.find_by_id(params[:id])
+    @professor.destroy
+    respond_with :admin, @professor
+  end
 end
