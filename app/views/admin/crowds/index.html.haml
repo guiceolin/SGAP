@@ -1,11 +1,10 @@
-.header
+.header.block
   .title
     %h1
       = Crowd.model_name.human(count: :many)
   .actions
     =link_to "Nova Turma", new_admin_crowd_path, class: 'btn btn-primary'
   %br.clear
-.body
   %table.table.table-stripped.table-compensed
     %thead
       %tr
@@ -18,6 +17,7 @@
         %th
     %tbody
       - @crowds.each do |c|
+.body.block
         %tr
           %td
             =link_to c.name, admin_crowd_path(c)
