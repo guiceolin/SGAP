@@ -6,24 +6,15 @@
     = link_to "Novo Professor", new_admin_professor_path, class: 'btn btn-primary'
   %br.clear
 .block
-  %table.table.table-stripped.table-compensed
-    %thead
-      %tr
-        %th
-          = Professor.human_attribute_name :name
-        %th
-          = Professor.human_attribute_name :username
-        %th
-          = Professor.human_attribute_name :email
-    %tbody
-      - @professors.each do |p|
+  = simple_form_for Professor.new, url: search_admin_professors_path, as: :terms, html: { class: 'search form-inline' } do |f|
+    %table.table.table-stripped.table-compensed
+      %thead
         %tr
-          %td
-            = p.name
-          %td
-            = p.username
-          %td
-            = p.email
-          %td
-            =link_to content_tag(:i, '', class: 'icon-pencil'), edit_admin_professor_path(p)
-            =link_to content_tag(:i, '', class: 'icon-remove'), admin_professor_path(p), method: :delete, confirm: 'Tem Certeza?'
+          %th
+            = f.input :name, label:false, placeholder: Professor.human_attribute_name(:name)
+          %th
+            = f.input :username, label: false, placeholder: Professor.human_attribute_name(:username)
+          %th
+            = f.input :email, label:false, placeholder: Professor.human_attribute_name(:email)
+      %tbody
+        = render :partial => 'tbody'

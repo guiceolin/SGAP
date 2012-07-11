@@ -7,6 +7,11 @@ class Admin::ProfessorsController < ApplicationController
     respond_with :admin, @professors
   end
 
+  def search
+    @professors = Professor.search(params[:terms])
+    respond_with :admin, @professors, layout: !request.xhr?
+  end
+
   def new
     @professor = Professor.new
     respond_with :admin, @professor
