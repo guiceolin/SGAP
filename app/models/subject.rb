@@ -9,4 +9,10 @@ class Subject < ActiveRecord::Base
     "#{name} (#{code})"
   end
 
+  def self.collection_for_selection
+    all.inject([]) do |collection,subject|
+      collection << [subject.name, subject.id]
+    end
+  end
+
 end

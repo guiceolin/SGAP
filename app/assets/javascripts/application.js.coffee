@@ -27,6 +27,22 @@ $ ->
          $(tr).html('<td>' + elem.student.name + '</td> ').fadeIn()
          $('#students-table').append(tr)
 
+  $("form.search input").keyup ->
+    form = $("form.search")
+    $.ajax(
+      url: form.attr("action")
+      data: form.serialize()
+    ).done (data) ->
+      $("table tbody").html data
+
+  $("form.search select").change ->
+    form = $("form.search")
+    $.ajax(
+      url: form.attr("action")
+      data: form.serialize()
+    ).done (data) ->
+      $("table tbody").html data
+
 class Enrollment
   constructor: (@resourceLocation,@student) ->
 

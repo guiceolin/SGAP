@@ -20,6 +20,18 @@ class Crowd < ActiveRecord::Base
     end
   end
 
+  def self.search(terms= {})
+    if terms.present?
+      query = scoped
+      query = query.where('name like ?', "%#{terms[:name]}%") if terms[:name].present?
+      query = query.where(:professor_id => terms[:professor_id])if terms[:professor_id].present?
+      query = query.where(:subject_id => terms[:subject_id]) if terms[:subject_id].present?
+      query
+    else
+      all
+    end
+  end
+
   def as_json options={}
     super include: :students
   end

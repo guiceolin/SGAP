@@ -5,25 +5,17 @@
   .actions
     =link_to "Nova Turma", new_admin_crowd_path, class: 'btn btn-primary'
   %br.clear
-  %table.table.table-stripped.table-compensed
-    %thead
-      %tr
-        %th
-          = Crowd.human_attribute_name :name
-        %th
-          = Subject.model_name.human(count: :one)
-        %th
-          = Professor.model_name.human(count: :one)
-        %th
-    %tbody
-      - @crowds.each do |c|
 .body.block
+  = simple_form_for Crowd.new, url: search_admin_crowds_path, as: :terms, html: { class: 'search form-inline' } do |f|
+    %table.table.table-stripped.table-compensed
+      %thead
         %tr
-          %td
-            =link_to c.name, admin_crowd_path(c)
-          %td
-            =link_to c.subject, admin_subject_path(c.subject)
-          %td
-            =link_to c.professor, admin_professor_path(c.professor)
-          %td
-            =link_to content_tag(:i, '', class: 'icon-pencil'), edit_admin_crowd_path(c)
+          %th
+            = f.input :name, label: false, placeholder: Crowd.human_attribute_name(:name)
+          %th
+            = f.input :subject_id, label: false, collection: Subject.collection_for_selection, prompt: Subject.model_name.human(count: :one)
+          %th
+            = f.input :professor_id, label: false, collection: Professor.collection_for_selection, prompt: Professor.model_name.human(count: :one)
+          %th
+      %tbody
+        = render :partial => 'table'

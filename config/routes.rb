@@ -9,6 +9,9 @@ SGAP::Application.routes.draw do
     resources :enrollments, only: :create
     resources :subjects, :professors
     resources :crowds do
+      collection do
+        get :search
+      end
       resources :enrollments
     end
   end
