@@ -1,0 +1,25 @@
+.header.block
+  %h1= @student.name
+.block
+  %h2= Crowd.model_name.human(count: :many)
+  %table.table
+    %thead
+      %tr
+        %th
+          = Crowd.human_attribute_name(:name, count: :one)
+        %th
+          = Crowd.human_attribute_name(:semester, count: :one)
+        %th
+          = Crowd.human_attribute_name(:year, count: :one)
+    %tbody
+      - @student.enrollments.each do |e|
+        %tr
+          %td
+            = link_to e.crowd.name, admin_crowd_path(e.crowd)
+          %td
+            = Crowd.human_attribute_name(:semester, count: e.crowd.semester)
+          %td
+            = e.crowd.year
+          %td
+            =link_to content_tag(:i, '', class: 'icon-pencil'), edit_admin_crowd_path(e.crowd)
+            =link_to content_tag(:i, '', class: 'icon-remove'), admin_crowd_enrollment_path(e.crowd, e), method: :delete, confirm: 'Tem Certeza?'

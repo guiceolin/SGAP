@@ -1,18 +1,25 @@
-%table.table.table-stripped.table-bordered.table-compensed
-  %thead
-    %tr
-      %th
-        = Student.human_attribute_name :name
-      %th
-        = Student.human_attribute_name :username
-      %th
-        = Student.human_attribute_name :email
-  %tbody
-    - @students.each do |s|
+.block.header
+  .title
+    %h1= Student.model_name.human(count: :many)
+  .actions
+    = link_to "Novo Estudante", new_admin_student_path, class: 'btn btn-primary'
+  %br.clear
+.block
+  %table.table.table-stripped.table-compensed
+    %thead
       %tr
-        %td
-          = s.name
-        %td
-          = s.username
-        %td
-          = s.email
+        %th
+          = Student.human_attribute_name :name
+        %th
+          = Student.human_attribute_name :username
+        %th
+          = Student.human_attribute_name :email
+    %tbody
+      - @students.each do |s|
+        %tr
+          %td
+            = link_to s.name, admin_student_path(s)
+          %td
+            = s.username
+          %td
+            = s.email

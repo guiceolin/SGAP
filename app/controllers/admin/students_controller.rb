@@ -25,4 +25,8 @@ class Admin::StudentsController < ApplicationController
     @student.save
     respond_with :admin, @student
   end
+
+  def show
+    respond_with(@student = Student.find_by_id(params[:id]))
+  end
 end
