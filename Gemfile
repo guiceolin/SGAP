@@ -28,6 +28,7 @@ group :test do
   gem 'steak'
   gem 'capybara'
   gem 'fabrication'
+  gem 'database_cleaner'
 end
 
 # To use ActiveModel has_secure_password
