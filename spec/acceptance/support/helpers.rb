@@ -1,7 +1,7 @@
 module HelperMethods
   # Put helper methods you need to be available in all acceptance specs here.
 
-  def login_with_admin(admin=nil)
+  def login_as_admin(admin=nil)
     admin ||= Fabricate(:professor)
     visit login_page
     fill_in 'email', with: admin.email
