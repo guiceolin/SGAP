@@ -23,3 +23,7 @@
             = s.username
           %td
             = s.email
+          %td
+            =link_to content_tag(:i, '', class: 'icon-pencil'), edit_admin_student_path(s)
+            =link_to content_tag(:i, '', class: 'icon-remove'), admin_student_path(s), method: :delete, confirm: 'Tem Certeza?'
+
