@@ -1,29 +1,20 @@
 .block.header
   .title
-    %h1= Student.model_name.human(count: :many)
+    %h1
+      = Student.model_name.human(count: :many)
   .actions
     = link_to "Novo Estudante", new_admin_student_path, class: 'btn btn-primary'
   %br.clear
 .block
-  %table.table.table-stripped.table-compensed
-    %thead
-      %tr
-        %th
-          = Student.human_attribute_name :name
-        %th
-          = Student.human_attribute_name :username
-        %th
-          = Student.human_attribute_name :email
-    %tbody
-      - @students.each do |s|
+  = simple_form_for Student.new, url: search_admin_students_path, as: :terms, html: { class: 'search form-inline' } do |f|
+    %table.table.table-stripped.table-compensed
+      %thead
         %tr
-          %td
-            = link_to s.name, admin_student_path(s)
-          %td
-            = s.username
-          %td
-            = s.email
-          %td
-            =link_to content_tag(:i, '', class: 'icon-pencil'), edit_admin_student_path(s)
-            =link_to content_tag(:i, '', class: 'icon-remove'), admin_student_path(s), method: :delete, confirm: 'Tem Certeza?'
-
+          %th
+            = f.input :name, label: false, placeholder: Student.human_attribute_name(:name)
+          %th
+            = f.input :username, label: false, placeholder:  Student.human_attribute_name(:username)
+          %th
+            = f.input :email, label: false, placeholder:  Student.human_attribute_name(:email)
+      %tbody
+        = render :partial => 'tbody'
