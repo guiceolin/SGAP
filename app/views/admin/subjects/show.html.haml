@@ -1,7 +1,8 @@
-%h1
-  = @subject.name
-  (
-  = @subject.code
-  )
-
-%p= @subject.description
+.header.block
+  %h1
+    = @subject.name
+    (
+    = @subject.code
+    )
+.block
+  %h2= @subject.description

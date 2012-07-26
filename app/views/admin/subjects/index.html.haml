@@ -1,20 +1,19 @@
-.well
-  %h1= t('.header')
-  %table.table.table-bordered.table-striped.table.condensed
-    %thead
-      %tr
-        %th
-          = Subject.human_attribute_name :name
-        %th
-          = Subject.human_attribute_name :code
-        %th
-          = Subject.human_attribute_name :description
-    %tbody
-      - @subjects.each do |s|
+.block.header
+  .title
+    %h1= Subject.model_name.human(count: :many)
+  .actions
+    = link_to "Nova Disciplina", new_admin_subject_path, class: 'btn btn-primary'
+  %br.clear
+.block
+  =simple_form_for Subject.new, url: search_admin_subjects_path, as: :terms, html: { class: 'search form-inline' } do |f|
+    %table.table.table-striped.table.condensed
+      %thead
         %tr
-          %td
-            = s.name
-          %td
-            = s.code
-          %td
-            = s.description
+          %th
+            = f.input :code, label:false, placeholder: Subject.human_attribute_name(:code)
+          %th
+            = f.input :name, label:false, placeholder: Subject.human_attribute_name(:name)
+          %th
+            = f.input :description, label:false, placeholder: Subject.human_attribute_name(:description), as: :string
+      %tbody
+        = render :partial => 'tbody'

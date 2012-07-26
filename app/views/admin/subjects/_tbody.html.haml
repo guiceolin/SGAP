@@ -1,0 +1,11 @@
+- @subjects.each do |s|
+  %tr
+    %td
+      = s.code
+    %td
+      = s.name
+    %td
+      = s.description
+    %td
+      =link_to content_tag(:i, '', class: 'icon-pencil'), edit_admin_subject_path(s)
+      =link_to content_tag(:i, '', class: 'icon-remove'), admin_subject_path(s), method: :delete, confirm: 'Tem Certeza?'
