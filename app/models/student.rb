@@ -11,8 +11,7 @@ class Student < User
       query = query.where("email LIKE ?", "%#{terms[:email]}%") if terms[:email].present?
       query
     elsif terms.present?
-      where("name LIKE ?", "%#{terms}%").where("username LIKE ?", "%#{terms}%").where("email LIKE ?", "%#{terms}%")
-
+      where("name LIKE :terms OR username LIKE :terms OR email LIKE :terms", terms: "%#{terms}%")
     else
       all
     end

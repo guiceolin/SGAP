@@ -1,0 +1,47 @@
+.block.header
+  %h1
+    Área de trabalho
+
+.block
+  %h2= Crowd.model_name.human(count: :many)
+  %ul
+    %li
+      = link_to "Nova Turma", new_admin_crowd_path
+    %li
+      = link_to "Todas as Turmas", admin_crowds_path
+    %li
+      Ir para:
+      %input.goto{'data-resource' => 'admin/crowds'}
+
+.block
+  %h2= Subject.model_name.human(count: :many)
+  %ul
+    %li
+      = link_to "Nova Disciplina", new_admin_subject_path
+    %li
+      = link_to "Todas as Disciplinas",admin_subjects_path
+    %li
+      Ir para:
+      %input.goto{'data-resource' => 'admin/subjects'}
+
+.block
+  %h2= Professor.model_name.human(count: :many)
+  %ul
+    %li
+      = link_to "Novo Professor", new_admin_professor_path
+    %li
+      = link_to "Todos os professores", admin_professors_path
+    %li
+      Ir para:
+      %input.goto{"data-resource" => "admin/professors"}
+
+.block
+  %h2= Student.model_name.human(count: :many)
+  %ul
+    %li
+      = link_to "Novo Aluno", new_admin_student_path
+    %li
+      = link_to "Todos os Alunos", admin_students_path
+    %li
+      Ir para:
+      %input.goto{"data-resource" => "admin/students"}

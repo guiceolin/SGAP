@@ -10,16 +10,21 @@ class Professor < User
   end
 
   def self.search(terms)
-    if terms.present?
+    if terms.is_a? Hash
       query = scoped
       query = query.where('name like ?', "%#{terms[:name]}%") if terms[:name].present?
       query = query.where('username like ?', "%#{terms[:username]}%") if terms[:username].present?
       query = query.where('email like ?', "%#{terms[:email]}%") if terms[:email].present?
       query
+    elsif terms.present?
+      where("name LIKE :terms OR username LIKE :terms OR email LIKE :terms", terms: "%#{terms}%")
     else
       all
     end
+  end
 
+  def as_json(options={})
+    super.merge({ label: name, value: name })
   end
 
 end

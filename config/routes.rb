@@ -21,6 +21,9 @@ SGAP::Application.routes.draw do
 
   get 'sign_in',  to: 'sessions#new'
   get 'sign_out', to: 'sessions#destroy'
+
+
+  get ':dashboard', to: 'dashboard#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

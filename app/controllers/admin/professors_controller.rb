@@ -1,6 +1,6 @@
 class Admin::ProfessorsController < ApplicationController
 
-  respond_to :html
+  respond_to :html, :json
 
   def index
     @professors = Professor.all
@@ -8,7 +8,7 @@ class Admin::ProfessorsController < ApplicationController
   end
 
   def search
-    @professors = Professor.search(params[:terms])
+    @professors = Professor.search(params[:terms].present? ? params[:terms] : params[:term])
     respond_with :admin, @professors, layout: !request.xhr?
   end
 

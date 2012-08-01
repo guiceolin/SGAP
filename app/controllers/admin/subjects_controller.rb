@@ -1,5 +1,5 @@
 class Admin::SubjectsController < ApplicationController
-  respond_to :html
+  respond_to :html, :json
 
   def index
     @subjects = Subject.all
@@ -7,7 +7,7 @@ class Admin::SubjectsController < ApplicationController
   end
 
   def search
-    @subjects = Subject.search(params[:terms])
+    @subjects = Subject.search(params[:terms].present? ? params[:terms] : params[:term])
     respond_with :admin, @subjects, layout: !request.xhr?
   end
 

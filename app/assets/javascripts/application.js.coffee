@@ -16,6 +16,14 @@
 #= require_tree .
 $ ->
   $('#base-tr').hide()
+
+  $('.goto').each (i,node) ->
+    $(node).autocomplete
+      source: "/#{$(node).data('resource')}/search/"
+      minLenght: 2
+      select: (event,ui) ->
+        window.location.href = $(node).data('resource') + '/' + ui.item.value
+
   $('#student-add').autocomplete
     source: '/admin/students/'
     minLength: 2

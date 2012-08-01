@@ -10,12 +10,14 @@ class Subject < ActiveRecord::Base
   end
 
   def self.search(terms)
-    if terms.present?
+    if terms.is_a? Hash
       query = scoped
       query = query.where("name LIKE ?",        "%#{terms[:name]}%")        if terms[:name].present?
       query = query.where("code LIKE ?",        "%#{terms[:code]}%")        if terms[:code].present?
       query = query.where("description LIKE ?", "%#{terms[:description]}%") if terms[:description].present?
       query
+    elsif terms.present?
+      where('name LIKE :terms OR code LIKE :terms', terms: "%#{terms}%")
     else
       all
     end
@@ -25,5 +27,10 @@ class Subject < ActiveRecord::Base
       collection << [subject.name, subject.id]
     end
   end
+
+  def as_json options={}
+    super.merge({ label: name, value: id })
+  end
+
 
 end

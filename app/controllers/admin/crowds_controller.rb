@@ -3,7 +3,7 @@ class Admin::CrowdsController < ApplicationController
   respond_to :html, :json
 
   def search
-    @crowds = Crowd.search(params[:terms])
+    @crowds = Crowd.search(params[:terms].present? ? params[:terms] : params[:term])
     respond_with :admin, @crowds, layout: !request.xhr?
   end
 
