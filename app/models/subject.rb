@@ -9,6 +9,10 @@ class Subject < ActiveRecord::Base
     "#{name} (#{code})"
   end
 
+  def to_param
+    code
+  end
+
   def self.search(terms)
     if terms.is_a? Hash
       query = scoped

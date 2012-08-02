@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
     name
   end
 
+  def to_param
+    username
+  end
+
   def self.authenticate(email,password)
     user = find_by_email(email)
     if user && user.crypted_password == user.encrypt(password, user.salt)

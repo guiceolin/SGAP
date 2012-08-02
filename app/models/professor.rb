@@ -24,7 +24,8 @@ class Professor < User
   end
 
   def as_json(options={})
-    super.merge({ label: name, value: name })
+    super.merge({ label: name, value: username })
   end
+
 
 end

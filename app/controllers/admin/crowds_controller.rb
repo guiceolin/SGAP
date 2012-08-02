@@ -23,24 +23,24 @@ class Admin::CrowdsController < ApplicationController
   end
 
   def edit
-    @crowd = Crowd.find_by_id(params[:id])
+    @crowd = Crowd.find_by_name(params[:id])
     respond_with :admi, @crowd
   end
 
   def update
-    @crowd = Crowd.find_by_id(params[:id])
+    @crowd = Crowd.find_by_name(params[:id])
     @crowd.update_attributes(params[:crowd])
     @crowd.save
     respond_with :admin, @crowd
   end
 
   def show
-    @crowd = Crowd.find_by_id(params[:id])
+    @crowd = Crowd.find_by_name(params[:id])
     respond_with :admin, @crowd
   end
 
   def destroy
-    @crowd = Crowd.find_by_id(params[:id])
+    @crowd = Crowd.find_by_name(params[:id])
     @crowd.destroy
     respond_with :admin, @crowd
   end

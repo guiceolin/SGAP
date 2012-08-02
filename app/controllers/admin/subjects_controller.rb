@@ -23,17 +23,17 @@ class Admin::SubjectsController < ApplicationController
   end
 
   def show
-    @subject = Subject.find_by_id(params[:id])
+    @subject = Subject.find_by_code(params[:id])
     respond_with :admin, @subject
   end
 
   def edit
-    @subject = Subject.find_by_id(params[:id])
+    @subject = Subject.find_by_code(params[:id])
     respond_with :admin, @subject
   end
 
   def update
-    @subject = Subject.find_by_id(params[:id])
+    @subject = Subject.find_by_code(params[:id])
     @subject.update_attributes(params[:subject])
     @subject.save
     respond_with :admin, @subject

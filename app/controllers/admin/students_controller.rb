@@ -21,17 +21,17 @@ class Admin::StudentsController < ApplicationController
   end
 
   def edit
-    @student = Student.find_by_id(params[:id])
+    @student = Student.find_by_username(params[:id])
   end
 
   def update
-    @student = Student.find_by_id(params[:id])
+    @student = Student.find_by_username(params[:id])
     @student.update_attributes(params[:student])
     @student.save
     respond_with :admin, @student
   end
 
   def show
-    respond_with(@student = Student.find_by_id(params[:id]))
+    respond_with(@student = Student.find_by_username(params[:id]))
   end
 end

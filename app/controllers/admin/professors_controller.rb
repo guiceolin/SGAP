@@ -27,12 +27,12 @@ class Admin::ProfessorsController < ApplicationController
   end
 
   def edit
-    @professor = Professor.find_by_id(params[:id])
+    @professor = Professor.find_by_username(params[:id])
     respond_with :admin, @professor
   end
 
   def update
-    @professor = Professor.find_by_id(params[:id])
+    @professor = Professor.find_by_username(params[:id])
     @professor.update_attributes(params[:professor])
     if @professor.save
       respond_with :admin, @professor
@@ -42,12 +42,12 @@ class Admin::ProfessorsController < ApplicationController
   end
 
   def show
-    @professor = Professor.find_by_id(params[:id])
+    @professor = Professor.find_by_username(params[:id])
     respond_with :admin, @professor
   end
 
   def destroy
-    @professor = Professor.find_by_id(params[:id])
+    @professor = Professor.find_by_username(params[:id])
     @professor.destroy
     respond_with :admin, @professor
   end
