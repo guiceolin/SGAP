@@ -13,6 +13,12 @@
 #= require jquery
 #= require jquery_ujs
 #= require jquery-ui-1.8.20.custom.min
+#= require handlebars
+#= require ember
+#= require ember-data
+#= require_self
+#= require sgap
+window.SGAP = Ember.Application.create()
 #= require_tree .
 $ ->
   $('#base-tr').hide()
