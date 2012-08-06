@@ -8,4 +8,6 @@
   %body
     .content
       = breadcrumb(request.path)
+      :handlebars
+        {{ view ApplicationView }}
       = yield
