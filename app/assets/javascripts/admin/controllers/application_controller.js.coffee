@@ -1,3 +1,2 @@
-Admin.ApplicationController = Ember.Controller.extend({
+Admin.ApplicationController = Ember.Controller.extend
 
-});
