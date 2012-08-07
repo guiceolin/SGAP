@@ -1,0 +1,19 @@
+<div class='header block'>
+  <div class='title'>
+    <h1>Turmas</h1>
+  </div>
+  <div class='actions'>
+    EDIT
+  </div>
+</div>
+<div class='block'>
+  <table class='table table-stripped table-compensed'>
+    {{#each crowd in content}}
+    <tr>
+      <td>
+        {{crowd.name}}
+      </td>
+    </tr>
+    {{/each}}
+  </table>
+</div>

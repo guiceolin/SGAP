@@ -15,6 +15,7 @@ gem "ember-rails"
 gem "active_model_serializers", :git => "git://github.com/josevalim/active_model_serializers.git"
 
 
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

@@ -6,5 +6,5 @@
 #= require_tree ./helpers
 #= require_tree ./routes
 #= require_self
-Admin.initialize();
+Admin.initialize(Admin.Router)
 
