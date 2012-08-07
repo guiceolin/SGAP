@@ -17,9 +17,7 @@
 #= require ember
 #= require ember-data
 #= require_self
-#= require sgap
-window.SGAP = Ember.Application.create()
-#= require_tree .
+# require_tree .
 $ ->
   $('#base-tr').hide()
 

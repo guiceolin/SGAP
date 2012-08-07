@@ -1,4 +1,4 @@
-SGAP.Router = Ember.Router.extend
+Admin.Router = Ember.Router.extend
   location: 'hash',
 
   root: Ember.Route.extend

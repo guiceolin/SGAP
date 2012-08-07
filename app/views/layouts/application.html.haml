@@ -4,11 +4,9 @@
     %title SGAP
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
-    = javascript_include_tag "templates/all"
+    = yield :javascripts
     = csrf_meta_tags
   %body
     .content
       = breadcrumb(request.path)
-      :handlebars
-          {{ view SGAP.ApplicationView }}
       = yield
