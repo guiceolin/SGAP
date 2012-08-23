@@ -1,0 +1,52 @@
+.header.block
+  %h1= @crowd.name
+.block
+  %h2= Subject.model_name.human
+  %p= link_to @crowd.subject, professor_subject_path(@crowd.subject)
+  %h3
+    = Crowd.human_attribute_name(:semester, count: @crowd.semester)
+    \-
+    = @crowd.year
+.block
+  %h2= Enunciation.model_name.human count: :many
+  %table.table.table-stripped.table-compensed
+    %thead
+      %tr
+        %th
+          = Enunciation.human_attribute_name :name
+        %th
+          = Crowd.model_name.human(count: :one)
+        %th
+          = Enunciation.human_attribute_name :description
+        %th
+          = Enunciation.human_attribute_name :end_date
+      %tbody
+        - @crowd.enunciations.each do |e|
+          %tr
+            %td
+              = link_to e.name, professor_enunciation_path(e.name)
+            %td
+              = link_to e.crowd.name, professor_crowd_path(e.crowd.name)
+            %td
+              = e.description
+            %td
+              = l(e.end_date)
+            %td
+              = link_to content_tag(:i, '', class: 'icon-pencil'), edit_professor_enunciation_path(e)
+              = link_to content_tag(:i, '', class: 'icon-remove'), professor_enunciation_path(e), method: :delete, confirm: "Tem Certeza?"
+
+.block
+  %h2= Student.model_name.human count: :many
+  %table.table.table-stripped.table-condensed#students-table
+    %thead
+      %tr
+        %th
+          = Student.human_attribute_name(:name, count: :one)
+        %th
+    %tbody
+      %tr#base-tr
+        %td
+      - @crowd.enrollments.each do |e|
+        %tr
+          %td
+            = link_to e.student.name, professor_student_path(e)

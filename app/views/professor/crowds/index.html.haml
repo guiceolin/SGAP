@@ -1,0 +1,16 @@
+.header.block
+  .title
+    %h1
+      = Crowd.model_name.human(count: :many)
+  %br.clear
+.body.block
+  = simple_form_for Crowd.new, url: search_professor_crowds_path, as: :terms, html: { class: 'search form-inline' } do |f|
+    %table.table.table-stripped.table-compensed
+      %thead
+        %tr
+          %th
+            = f.input :name, label: false, placeholder: Crowd.human_attribute_name(:name)
+          %th
+            = f.input :subject_id, label: false, collection: Subject.collection_for_selection, prompt: Subject.model_name.human(count: :one)
+      %tbody
+        = render :partial => 'table'

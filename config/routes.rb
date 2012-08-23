@@ -5,6 +5,12 @@ SGAP::Application.routes.draw do
 
   namespace :professor do
     resources :enunciations
+    resources :crowds, :subjects, :students do
+      collection do
+        get :search
+      end
+    end
+
   end
   namespace :admin do
     resources :enrollments, only: :create

@@ -1,0 +1,6 @@
+- @crowds.each do |c|
+  %tr
+    %td
+      =link_to c.name, professor_crowd_path(c)
+    %td
+      =link_to c.subject, professor_subject_path(c.subject)
