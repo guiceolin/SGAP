@@ -1,0 +1,13 @@
+- @enunciations.each do |e|
+  %tr
+    %td
+      = link_to e.name, professor_enunciation_path(e.name)
+    %td
+      = link_to e.crowd.name, professor_crowd_path(e.crowd.name)
+    %td
+      = e.description
+    %td
+      = l(e.end_date)
+    %td
+      = link_to content_tag(:i, '', class: 'icon-pencil'), edit_professor_enunciation_path(e)
+      = link_to content_tag(:i, '', class: 'icon-remove'), professor_enunciation_path(e), method: :delete, confirm: "Tem Certeza?"

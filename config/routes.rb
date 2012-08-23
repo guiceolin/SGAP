@@ -2,8 +2,10 @@ SGAP::Application.routes.draw do
 
   resource :session, only: [:new,:create,:destroy]
   resource :users
-  resources :enunciations
 
+  namespace :professor do
+    resources :enunciations
+  end
   namespace :admin do
     resources :enrollments, only: :create
     resources :students, :subjects, :professors do
