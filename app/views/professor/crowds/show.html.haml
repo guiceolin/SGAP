@@ -15,8 +15,6 @@
         %th
           = Enunciation.human_attribute_name :name
         %th
-          = Crowd.model_name.human(count: :one)
-        %th
           = Enunciation.human_attribute_name :description
         %th
           = Enunciation.human_attribute_name :end_date
@@ -25,8 +23,6 @@
           %tr
             %td
               = link_to e.name, professor_enunciation_path(e.name)
-            %td
-              = link_to e.crowd.name, professor_crowd_path(e.crowd.name)
             %td
               = e.description
             %td
