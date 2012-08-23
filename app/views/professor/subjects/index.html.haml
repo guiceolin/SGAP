@@ -1,0 +1,17 @@
+.block.header
+  .title
+    %h1= Subject.model_name.human(count: :many)
+  %br.clear
+.block
+  =simple_form_for Subject.new, url: search_professor_subjects_path, as: :terms, html: { class: 'search form-inline' } do |f|
+    %table.table.table-striped.table.condensed
+      %thead
+        %tr
+          %th
+            = f.input :code, label:false, placeholder: Subject.human_attribute_name(:code)
+          %th
+            = f.input :name, label:false, placeholder: Subject.human_attribute_name(:name)
+          %th
+            = f.input :description, label:false, placeholder: Subject.human_attribute_name(:description), as: :string
+      %tbody
+        = render :partial => 'tbody'

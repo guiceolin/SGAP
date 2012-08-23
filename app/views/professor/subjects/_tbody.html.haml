@@ -1,0 +1,8 @@
+- @subjects.each do |s|
+  %tr
+    %td
+      = link_to s.code, professor_subject_path(s.code)
+    %td
+      = s.name
+    %td
+      = s.description

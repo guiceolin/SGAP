@@ -1,0 +1,22 @@
+.header.block
+  %h1
+    = @subject.name
+    (
+    = @subject.code
+    )
+.block
+  %h2= @subject.description
+
+.block
+  %h2= Crowd.model_name.human count: :many
+  = simple_form_for Crowd.new, url: search_professor_crowds_path, as: :terms, html: { class: 'search form-inline' } do |f|
+    %table.table.table-stripped.table-compensed
+      %thead
+        %tr
+          %th
+            = f.input :name, label: false, placeholder: Crowd.human_attribute_name(:name)
+      %tbody
+        - @subject.crowds.each do |c|
+          %tr
+            %td
+              =link_to c.name, professor_crowd_path(c)
