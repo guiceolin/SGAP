@@ -1,0 +1,8 @@
+.header.block
+  %h1
+    Editando Grupo da #{@group.crowd.name}
+.block
+  = simple_form_for @group, url: professor_crowd_group_path(@group.crowd), html: { class: 'form-horizontal' } do |f|
+    = render :partial => 'form', locals: { f:f }
+    .form-actions
+      = f.submit class: 'btn btn-primary'

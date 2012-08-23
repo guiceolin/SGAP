@@ -13,6 +13,7 @@ class Crowd < ActiveRecord::Base
   has_many :enrollments
   has_many :students, :through => :enrollments
   has_many :enunciations
+  has_many :groups
 
   def self.semesters_collection_for_select
     (1..2).inject([]) do |memo,current|

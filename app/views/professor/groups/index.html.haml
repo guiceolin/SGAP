@@ -1,0 +1,24 @@
+.header.block
+  .title
+    %h1
+      = Group.model_name.human(count: :many)
+  .actions
+    = link_to "Novo Grupo", new_professor_crowd_group_path(params[:crowd_id]), class: 'btn btn-primary'
+
+  %br.clear
+.body.block
+  %table.table.table-stripped.table-compensed
+    %thead
+      %tr
+        %th
+          = Group.human_attribute_name(:name)
+        %th
+
+    %tbody
+      - @groups.each do |g|
+        %tr
+          %td
+            = g.name
+          %td
+            = link_to content_tag(:i, '', class: 'icon-pencil'), edit_professor_crowd_group_path(g.crowd, g)
+            = link_to content_tag(:i, '', class: 'icon-remove'), professor_crowd_group_path(g.crowd, g), method: :delete, confirm: "Tem Certeza?"

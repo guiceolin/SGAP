@@ -5,7 +5,14 @@ SGAP::Application.routes.draw do
 
   namespace :professor do
     resources :enunciations
-    resources :crowds, :subjects, :students do
+    resources :crowds do
+      resources :groups
+      collection do
+        get :search
+      end
+    end
+
+    resources :subjects, :students do
       collection do
         get :search
       end

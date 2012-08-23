@@ -32,6 +32,27 @@
               = link_to content_tag(:i, '', class: 'icon-remove'), professor_enunciation_path(e), method: :delete, confirm: "Tem Certeza?"
 
 .block
+  %h2= Group.model_name.human count: :many
+  %table.table.table-stripped.table-condensed
+    %thead
+      %tr
+        %th
+          = Group.human_attribute_name(:name, count: :one)
+        %th
+        %th
+        %th
+    %tbody
+      - @crowd.groups.each do |g|
+        %tr
+          %td
+            =link_to g.name, professor_crowd_group_path(@crowd, g)
+          %td
+          %td
+          %td
+            = link_to content_tag(:i, '', class: 'icon-pencil'), edit_professor_crowd_group_path(g.crowd, g)
+            = link_to content_tag(:i, '', class: 'icon-remove'), professor_crowd_group_path(g.crowd, g), method: :delete, confirm: "Tem Certeza?"
+
+.block
   %h2= Student.model_name.human count: :many
   %table.table.table-stripped.table-condensed#students-table
     %thead
