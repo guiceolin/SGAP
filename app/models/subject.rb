@@ -4,6 +4,8 @@ class Subject < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :code, presence: true, uniqueness: true
   validates :description, presence: true
+  has_many :crowds
+  has_many :professors, :through => :crowds
 
   def to_s
     "#{name} (#{code})"
@@ -16,9 +18,9 @@ class Subject < ActiveRecord::Base
   def self.search(terms)
     if terms.is_a? Hash
       query = scoped
-      query = query.where("name LIKE ?",        "%#{terms[:name]}%")        if terms[:name].present?
-      query = query.where("code LIKE ?",        "%#{terms[:code]}%")        if terms[:code].present?
-      query = query.where("description LIKE ?", "%#{terms[:description]}%") if terms[:description].present?
+      query = query.where("subjects.name LIKE ?",        "%#{terms[:name]}%")        if terms[:name].present?
+      query = query.where("subjects.code LIKE ?",        "%#{terms[:code]}%")        if terms[:code].present?
+      query = query.where("subjects.description LIKE ?", "%#{terms[:description]}%") if terms[:description].present?
       query
     elsif terms.present?
       where('name LIKE :terms OR code LIKE :terms', terms: "%#{terms}%")
