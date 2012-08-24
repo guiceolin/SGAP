@@ -7,8 +7,12 @@
     = Crowd.human_attribute_name(:semester, count: @crowd.semester)
     \-
     = @crowd.year
-.block
-  %h2= Enunciation.model_name.human count: :many
+.block.header
+  .title
+    %h2= Enunciation.model_name.human count: :many
+  .actions
+    =link_to "Novo Enunciado", new_professor_enunciation_path, class: 'btn btn-primary'
+  %br.clear
   %table.table.table-stripped.table-compensed
     %thead
       %tr
@@ -31,8 +35,12 @@
               = link_to content_tag(:i, '', class: 'icon-pencil'), edit_professor_enunciation_path(e)
               = link_to content_tag(:i, '', class: 'icon-remove'), professor_enunciation_path(e), method: :delete, confirm: "Tem Certeza?"
 
-.block
-  %h2= Group.model_name.human count: :many
+.block.header
+  .title
+    %h2= Group.model_name.human count: :many
+  .actions
+    =link_to "Novo Grupo", new_professor_crowd_group_path(@crowd), class: 'btn btn-primary'
+  %br.clear
   %table.table.table-stripped.table-condensed
     %thead
       %tr
