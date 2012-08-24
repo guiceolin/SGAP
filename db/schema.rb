@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120823024625) do
+ActiveRecord::Schema.define(:version => 20120824223424) do
 
   create_table "crowds", :force => true do |t|
     t.string   "name"
@@ -53,6 +53,13 @@ ActiveRecord::Schema.define(:version => 20120823024625) do
   end
 
   add_index "groups", ["crowd_id"], :name => "index_groups_on_crowd_id"
+
+  create_table "memberships", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "group_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "subjects", :force => true do |t|
     t.string   "name"

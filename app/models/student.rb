@@ -2,6 +2,9 @@ class Student < User
   has_many :enrollments
   has_many :crowds, through: :enrollments
 
+  has_many :memberships
+  has_many :groups, through: :memberships
+
   def self.search(terms)
 
     if terms.is_a? Hash
