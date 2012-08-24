@@ -35,8 +35,6 @@ class Subject < ActiveRecord::Base
   end
 
   def as_json options={}
-    super.merge({ label: name, value: id })
+    super.merge({ label: name, value: to_param })
   end
-
-
 end

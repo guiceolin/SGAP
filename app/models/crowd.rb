@@ -37,7 +37,7 @@ class Crowd < ActiveRecord::Base
   end
 
   def as_json options={}
-    super(include: :students).merge({ label: name, value: id })
+    super(include: :students).merge({ label: name, value: to_param })
   end
 
   def to_param
