@@ -7,6 +7,7 @@ SGAP::Application.routes.draw do
     resources :enunciations
     resources :crowds do
       resources :groups
+      resources :memberships, only: [:create, :show, :destroy]
       collection do
         get :search
       end

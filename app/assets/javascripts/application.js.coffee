@@ -78,4 +78,75 @@ class Enrollment
         self.student = JSON.parse(xhr.responseText).student
         callback(self)
 
+class DataManager
 
+class DataManager.Base
+  constructor: (@fields = {}) ->
+  field: (name, value = null) ->
+    @fields[name] ||= value
+  save: =>
+    objToSave = {}
+    for fieldName, fieldValue of @fields
+      objToSave[fieldName] = fieldValue
+    console.log objToSave
+    source = @getSource()
+    data = {}
+    data[@resource] = objToSave
+    $.ajax
+      url: source
+      dataType: 'json'
+      type: 'POST'
+      async: false
+      data: data
+      success: (xhr,status) ->
+        @resourceLocation = xhr.getResponseHeader('Location')
+    return true
+  getSource: ->
+    if typeof(@source) == 'function' then @source.call() else @source
+
+class Membership extends DataManager.Base
+  constructor: (attr) ->
+    super(attr)
+    @resource = 'membership'
+    @source = => return "/professor/group/#{@fields['group_id']}/memberships/"
+    @field 'student_id'
+    @field 'group_id'
+
+class Student extends DataManager.Base
+  constructor: (attr) ->
+    @source = '/admin/students/'
+    super(attr)
+    @field 'id'
+
+class Group extends DataManager.Base
+  constructor: (attr) ->
+    super(attr)
+    @source = => return "/professor/crowds/#{@fields['crowd_id']}/groups/"
+
+class Autocompleter
+  constructor: (@placeholder, @resource, @minLenght = 2) ->
+    @placeholder.autocomplete
+      source: @resource.getSource()
+      minLenght: @minLenght
+      select: @select
+
+  @select: (event, ui) ->
+  @show: (elem) ->
+
+class MembershipAutocompleter extends Autocompleter
+  constructor: (@placeholder, @minLenght = 2) ->
+    @resource = new Student
+    super(@placeholder, @resource, @minLenght)
+  show: (elem) ->
+    alert('b')
+  select: (event, ui) =>
+    student = new Student(ui.item)
+    newMembership = new Membership({group: currentGroup, group_id: window.currentGroup.fields.id, student_id: student.id})
+    if newMembership.save()
+      @show(newMembership)
+
+window.Membership = Membership
+window.Student = Student
+window.Group = Group
+window.MembershipAutocompleter = MembershipAutocompleter
+window.DataManager = DataManager

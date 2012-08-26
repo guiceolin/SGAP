@@ -1,2 +1,9 @@
+:javascript
+  $(function(){
+    window.currentGroup = new Group(#{@group.attributes.to_json});
+    new MembershipAutocompleter($("#autocomplete"))
+    });
 .header.block
   %h1= @group.name
+
+%input#autocomplete
