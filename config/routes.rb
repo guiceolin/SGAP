@@ -6,8 +6,9 @@ SGAP::Application.routes.draw do
   namespace :professor do
     resources :enunciations
     resources :crowds do
-      resources :groups
-      resources :memberships, only: [:create, :show, :destroy]
+      resources :groups do
+        resources :memberships, only: [:create, :show, :destroy]
+      end
       collection do
         get :search
       end

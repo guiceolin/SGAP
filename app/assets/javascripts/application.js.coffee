@@ -84,7 +84,7 @@ class DataManager.Base
   constructor: (@fields = {}) ->
   field: (name, value = null) ->
     @fields[name] ||= value
-  save: =>
+  save: (callback = null) ->
     objToSave = {}
     for fieldName, fieldValue of @fields
       objToSave[fieldName] = fieldValue
@@ -98,8 +98,10 @@ class DataManager.Base
       type: 'POST'
       async: false
       data: data
-      success: (xhr,status) ->
-        @resourceLocation = xhr.getResponseHeader('Location')
+      complete: (xhr,status) =>
+        @location = xhr.getResponseHeader('Location')
+        if callback != null
+          callback(this)
     return true
   getSource: ->
     if typeof(@source) == 'function' then @source.call() else @source
@@ -108,7 +110,7 @@ class Membership extends DataManager.Base
   constructor: (attr) ->
     super(attr)
     @resource = 'membership'
-    @source = => return "/professor/group/#{@fields['group_id']}/memberships/"
+    @source = => return "/professor/crowds/#{@fields.group.crowd_id}/groups/#{@fields['group_id']}/memberships/"
     @field 'student_id'
     @field 'group_id'
 
@@ -125,7 +127,7 @@ class Group extends DataManager.Base
 
 class Autocompleter
   constructor: (@placeholder, @resource, @minLenght = 2) ->
-    @placeholder.autocomplete
+    @field = @placeholder.autocomplete
       source: @resource.getSource()
       minLenght: @minLenght
       select: @select
@@ -138,12 +140,15 @@ class MembershipAutocompleter extends Autocompleter
     @resource = new Student
     super(@placeholder, @resource, @minLenght)
   show: (elem) ->
-    alert('b')
+    tr = $('#base-tr').clone()
+    $(tr).html('<td>' + elem.fields.student.name + "</td><td><a href='#{elem.location}' data-method='delete' data-confirm='Tem Certeza?' rel='nofollow' ><i class='icon-remove' /></a></td> ").fadeIn()
+    $('#students-table').append(tr)
+    @placeholder.val('')
+
   select: (event, ui) =>
     student = new Student(ui.item)
-    newMembership = new Membership({group: currentGroup, group_id: window.currentGroup.fields.id, student_id: student.id})
-    if newMembership.save()
-      @show(newMembership)
+    newMembership = new Membership({student: student.fields, group: currentGroup.fields, group_id: window.currentGroup.fields.id, student_id: student.fields.id})
+    newMembership.save @show
 
 window.Membership = Membership
 window.Student = Student

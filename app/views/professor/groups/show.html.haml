@@ -5,5 +5,21 @@
     });
 .header.block
   %h1= @group.name
-
-%input#autocomplete
+.block
+  %h2= Student.model_name.human count: :many
+  %input#autocomplete{:placeholder => 'Adicionar'}
+  %table.table.table-stripped.table-condensed#students-table
+    %thead
+      %tr
+        %th
+          = Student.human_attribute_name(:name, count: :one)
+        %th
+    %tbody
+      %tr#base-tr
+        %td
+      - @group.memberships.each do |m|
+        %tr
+          %td
+            = link_to m.student.name, {}#professor_student_path(m.student)
+          %td
+            = link_to content_tag(:i, '', class: 'icon-remove'), professor_crowd_group_membership_path(@group.crowd,@group, m), method: :delete, confirm: "Tem certeza?"
