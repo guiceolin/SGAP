@@ -11,7 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120824223424) do
+ActiveRecord::Schema.define(:version => 20120829020657) do
+
+  create_table "conversations", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "crowds", :force => true do |t|
     t.string   "name"
@@ -25,6 +30,14 @@ ActiveRecord::Schema.define(:version => 20120824223424) do
 
   add_index "crowds", ["professor_id"], :name => "index_crowds_on_professor_id"
   add_index "crowds", ["subject_id"], :name => "index_crowds_on_subject_id"
+
+  create_table "deliveries", :force => true do |t|
+    t.integer  "message_id"
+    t.integer  "user_id"
+    t.boolean  "read"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "enrollments", :force => true do |t|
     t.integer  "student_id"
@@ -59,6 +72,22 @@ ActiveRecord::Schema.define(:version => 20120824223424) do
     t.integer  "group_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "messages", :force => true do |t|
+    t.integer  "conversation_id"
+    t.text     "body"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "participations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "conversation_id"
+    t.boolean  "archived",        :default => false
+    t.integer  "last_read",       :default => 0
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   create_table "subjects", :force => true do |t|

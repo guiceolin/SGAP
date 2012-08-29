@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
 
   before_save :encrypt_password
 
+  has_many :participations
+  has_many :conversations, through: :participations
+
   def to_s
     name
   end
