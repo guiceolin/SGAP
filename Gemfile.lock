@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/josevalim/active_model_serializers.git
+  revision: 001c1d06347832c0445c0daa22d4b6bf0dd8e0f9
+  specs:
+    active_model_serializers (0.5.0)
+      activemodel (~> 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -117,6 +124,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers!
   bcrypt-ruby
   coffee-rails (~> 3.2.1)
   haml
