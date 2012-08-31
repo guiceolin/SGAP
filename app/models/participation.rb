@@ -9,4 +9,10 @@ class Participation < ActiveRecord::Base
   def archive!
     archived = true
   end
+
+  def read!
+    ret = last_read
+    update_attribute(:last_read, conversation.messages.last.id)
+    return ret
+  end
 end
