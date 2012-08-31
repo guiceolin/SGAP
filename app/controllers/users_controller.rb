@@ -2,7 +2,13 @@ class UsersController < ApplicationController
   before_filter :require_no_login, only: [:new, :create]
   skip_before_filter :require_login, only: [:new, :create]
 
-  respond_to :html
+  respond_to :html, :json
+
+  def index
+    @user = User.where('username like ?', "%#{params[:term]}%")
+    respond_with @user, root: false
+  end
+
   def new
     @user = User.new
   end
