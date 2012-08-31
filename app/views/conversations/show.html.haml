@@ -1,0 +1,13 @@
+:javascript
+  $(function(){
+    view = new MessagesView(#{params[:id]})
+  });
+.block
+  %ul#messages
+.block
+  %div#new-message
+    %input#body
+    %a#send{:href => '#'}
+      Enviar
+
+
