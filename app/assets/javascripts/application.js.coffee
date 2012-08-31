@@ -84,51 +84,43 @@ class DataManager.Base
   constructor: (@fields = {}) ->
   field: (name, value = null) ->
     @fields[name] ||= value
-  save: (callback = null) ->
+  save: =>
     objToSave = {}
     for fieldName, fieldValue of @fields
       objToSave[fieldName] = fieldValue
     console.log objToSave
-    source = @getSource()
-    data = {}
-    data[@resource] = objToSave
     $.ajax
-      url: source
+      url: do @getSource
       dataType: 'json'
       type: 'POST'
       async: false
-      data: data
-      complete: (xhr,status) =>
-        @location = xhr.getResponseHeader('Location')
-        if callback != null
-          callback(this)
+      data:
+        resource: objToSave
+      complete: (xhr,status) ->
+        @resourceLocation = xhr.getResponseHeader('Location')
     return true
   getSource: ->
-    if typeof(@source) == 'function' then @source.call() else @source
+    source = if typeof(@source) == 'function' then @source.call() else @source
 
 class Membership extends DataManager.Base
   constructor: (attr) ->
-    super(attr)
     @resource = 'membership'
-    @source = => return "/professor/crowds/#{@fields.group.crowd_id}/groups/#{@fields['group_id']}/memberships/"
+    @source = => return "/professor/crowds/#{@fields['group'].crowd_id}/groups/#{@fields['group'].id}/memberships/"
+    super(attr)
     @field 'student_id'
     @field 'group_id'
 
 class Student extends DataManager.Base
+  @source = '/admin/students/'
   constructor: (attr) ->
-    @source = '/admin/students/'
     super(attr)
     @field 'id'
 
-class Group extends DataManager.Base
-  constructor: (attr) ->
-    super(attr)
-    @source = => return "/professor/crowds/#{@fields['crowd_id']}/groups/"
 
 class Autocompleter
-  constructor: (@placeholder, @resource, @minLenght = 2) ->
-    @field = @placeholder.autocomplete
-      source: @resource.getSource()
+  constructor: (@placeholder, @source, @minLenght = 2) ->
+    @placeholder.autocomplete
+      source: @source
       minLenght: @minLenght
       select: @select
 
@@ -136,22 +128,20 @@ class Autocompleter
   @show: (elem) ->
 
 class MembershipAutocompleter extends Autocompleter
-  constructor: (@placeholder, @minLenght = 2) ->
-    @resource = new Student
-    super(@placeholder, @resource, @minLenght)
+  constructor: (@placeholder, @group, @minLenght = 2) ->
+    @source = '/users/'
+    super(@placeholder, @source, @minLenght)
   show: (elem) ->
-    tr = $('#base-tr').clone()
-    $(tr).html('<td>' + elem.fields.student.name + "</td><td><a href='#{elem.location}' data-method='delete' data-confirm='Tem Certeza?' rel='nofollow' ><i class='icon-remove' /></a></td> ").fadeIn()
-    $('#students-table').append(tr)
-    @placeholder.val('')
-
+    alert('b')
   select: (event, ui) =>
-    student = new Student(ui.item)
-    newMembership = new Membership({student: student.fields, group: currentGroup.fields, group_id: window.currentGroup.fields.id, student_id: student.fields.id})
-    newMembership.save @show
+    elem = new Membership({student_id: ui.item.id, group_id: @group.id, group: @group})
+    if elem.save()
+      @show(elem)
+
 
 window.Membership = Membership
 window.Student = Student
-window.Group = Group
 window.MembershipAutocompleter = MembershipAutocompleter
 window.DataManager = DataManager
+
+
