@@ -44,9 +44,6 @@ class User < ActiveRecord::Base
   end
 
   def as_json(options={})
-    binding.pry
     super.merge({ label: name, value: to_param })
   end
-
-
 end
