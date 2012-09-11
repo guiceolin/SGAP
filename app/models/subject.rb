@@ -6,6 +6,7 @@ class Subject < ActiveRecord::Base
   validates :description, presence: true
   has_many :crowds
   has_many :professors, :through => :crowds
+  has_many :conversations, as: :scope
 
   def to_s
     "#{name} (#{code})"
