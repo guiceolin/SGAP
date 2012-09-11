@@ -10,7 +10,18 @@ class Group < ActiveRecord::Base
 
   validates_presence_of :name
 
+  before_save :fix_participations
+
+  def fix_participations
+    conversations.map(&:save)
+  end
+
+
   def to_param
     name
   end
-end
+
+  def participations
+    students
+  end
+ end

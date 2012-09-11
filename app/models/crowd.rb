@@ -46,4 +46,14 @@ class Crowd < ActiveRecord::Base
     # MUDAR PRA CODE
     name
   end
+
+  before_save :fix_participations
+
+  def fix_participations
+    conversations.map(&:save)
+  end
+
+  def participations
+    [professor] + students
+  end
 end
