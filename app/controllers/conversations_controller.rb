@@ -1,9 +1,8 @@
 class ConversationsController < ApplicationController
-  skip_before_filter :require_login
   respond_to :json, :html
 
   def index
-     respond_with current_user.conversations
+    respond_with current_user.conversations
   end
 
   def show
@@ -31,9 +30,5 @@ class ConversationsController < ApplicationController
     @conversation.users << current_user
     @conversation.save
     respond_with @conversation
-  end
-
-  def current_user
-    User.find(2)
   end
 end
