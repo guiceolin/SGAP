@@ -1,0 +1,7 @@
+.block
+  %ul#listings
+    %li{'data-foreach-conversation' => "conversations" }
+      %a{ 'data-route'=>'conversation' }
+        %p{ 'data-bind' => 'conversation.messages.last.body | truncate 100'}
+        %p
+          %span{ 'data-foreach-user'=>'conversation.users', 'data-bind'=>'user.username | append " "'}

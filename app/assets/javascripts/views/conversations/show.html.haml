@@ -1,0 +1,8 @@
+.block
+  %a{'data-route' => 'routes.conversations'}
+    %p
+      Todas as Mensagens
+.block
+  %ul#messages
+    %li{'data-foreach-message' => 'conversation.messages'}
+      %p{'data-bind' => 'message.user.username | append ": " | append message.body '}
