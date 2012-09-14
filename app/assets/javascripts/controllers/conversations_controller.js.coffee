@@ -6,11 +6,12 @@ class Sgap.ConversationsController extends Batman.Controller
     @set 'conversations', Sgap.Conversation.get('all')
 
   show: (params) ->
+    @set 'newMessage', new Sgap.Message
     @set 'conversation', Sgap.Conversation.find parseInt(params.id, 10), (err) ->
       throw err if err
     TimeoutManager.setMessageTimeout =>
-      @get('conversation').load()
-
+      @get('conversation').get('messages').load (err) ->
+        throw err if err
   create: (params) ->
 
   update: (params) ->
