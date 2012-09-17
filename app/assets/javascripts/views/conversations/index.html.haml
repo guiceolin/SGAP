@@ -17,7 +17,7 @@
   %h2 Nova Conversa
   %form{'data-formfor-conversation' => 'newConversation', 'data-event-submit' => 'create'}
     %input{ 'data-bind' => 'conversation.topic', :placeholder => 'Tópico'}
-    %select{ 'data-bind' => 'selectedScope.type'}
+    %select{ 'data-bind' => 'selectedScope.type', 'data-event-change' => 'changeScope'}
       %option{ :value =>''}Selecione o Escopo
       %option{ 'data-foreach-type' => 'scopeTypes', 'data-bind' => 'type'}
     %select{ 'data-bind' => 'selectedScope.id' }

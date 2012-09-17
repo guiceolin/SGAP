@@ -4,9 +4,9 @@ class Sgap.ConversationsController extends Batman.Controller
     do TimeoutManager.clearMessageTimeout
     do Sgap.Conversation.load
     @set 'conversations', Sgap.Conversation.get('all')
-    @set 'scopes', Sgap.Crowd.get('all')
+    @set 'scopes', []
     @set 'newConversation', new Sgap.Conversation
-    @set 'scopeTypes', ["Crowd"]
+    @set 'scopeTypes', ["Turma", "Grupo", "Disciplina"]
     @set 'selectedScope', {id: '', type: ''}
 
   show: (params) ->
@@ -33,3 +33,10 @@ class Sgap.ConversationsController extends Batman.Controller
     @get('newMessage').save()
     @get('conversation').get('messages').add(@get('newMessage'))
     @redirect @get('conversation')
+
+  changeScope: () ->
+    switch @get('selectedScope').type
+      when 'Turma' then @set('scopes', Sgap.Crowd.get('all') )
+      when 'Grupo' then @set('scopes', Sgap.Group.get('all') )
+      when 'Disciplina' then @set('scopes', Sgap.Subject.get('all') )
+
