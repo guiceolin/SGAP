@@ -1,6 +1,6 @@
 class Conversation < ActiveRecord::Base
 
-  attr_accessible :scope_id, :scope_type
+  attr_accessible :scope_id, :scope_type, :topic
 
   has_many :participations
   has_many :users, through: :participations

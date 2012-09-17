@@ -4,17 +4,19 @@
     %li{'data-foreach-conversation' => "conversations", 'data-route' => 'conversation' }
       %a{ 'data-route'=>'conversation' }
         %p
-          %span{ 'data-bind' => 'conversation.messages.last.body | truncate 100'}
+          %span{ 'data-bind' => 'conversation.topic | truncate 100'}
           %div.js-message-scope
             %span.label.label-info{ 'data-bind' => 'conversation.scope.name', 'data-bind-class' => 'conversation.scope.class'}
-            %span.label.label-info{ 'data-bind' => 'conversation.scope.crowd.name', 'data-showif' => 'conversation.scope.crowd'}
-            %span.label.label-info{ 'data-bind' => 'conversation.scope.crowd.subject.name', 'data-showif' => 'conversation.scope.subject'}
+            %span.label.label-success{ 'data-bind' => 'conversation.scope.crowd.name', 'data-showif' => 'conversation.scope.crowd'}
+            %span.label.label-warning{ 'data-bind' => 'conversation.scope.crowd.subject.name', 'data-showif' => 'conversation.scope.crowd'}
+            %span.label.label-warning{ 'data-bind' => 'conversation.scope.subject.name', 'data-showif' => 'conversation.scope.subject'}
 
         %p
           %span{ 'data-foreach-user'=>'conversation.users', 'data-bind'=>'user.username | append " "'}
 .block
   %h2 Nova Conversa
   %form{'data-formfor-conversation' => 'newConversation', 'data-event-submit' => 'create'}
+    %input{ 'data-bind' => 'conversation.topic', :placeholder => 'Tópico'}
     %select{ 'data-bind' => 'selectedScope.type'}
       %option{ :value =>''}Selecione o Escopo
       %option{ 'data-foreach-type' => 'scopeTypes', 'data-bind' => 'type'}

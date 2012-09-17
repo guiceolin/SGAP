@@ -5,3 +5,7 @@ class Sgap.Conversation extends Batman.Model
   @belongsTo 'scope', {polymorphic: true}
   @persist Batman.RailsStorage
 
+
+  @validate 'topic', presence: true
+
+  @encode 'topic'
