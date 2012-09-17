@@ -14,7 +14,7 @@ class Sgap.ConversationsController extends Batman.Controller
     @set 'conversation', Sgap.Conversation.find parseInt(params.id, 10), (err) ->
       throw err if err
     TimeoutManager.setMessageTimeout =>
-      @get('conversation').get('messages').load (err) ->
+      @get('conversation').load (err) ->
         throw err if err
 
   create: (params) ->
@@ -31,4 +31,5 @@ class Sgap.ConversationsController extends Batman.Controller
     console.log @get('newMessage').toJSON()
     @get('newMessage').set("conversation", @get("conversation"))
     @get('newMessage').save()
+    @get('conversation').get('messages').add(@get('newMessage'))
     @redirect @get('conversation')

@@ -1,5 +1,6 @@
 window.TimeoutManager = class TimeoutManager
-  @setMessageTimeout: (callback, time = 1000) ->
+  @setMessageTimeout: (callback, time = 5000) ->
+    do @clearMessageTimeout
     @messageTimeout = window.setInterval(callback,time)
 
   @clearMessageTimeout: ->
