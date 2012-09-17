@@ -1,11 +1,15 @@
 .block
   %h2 Conversas
   %ul#listings
-    %li{'data-foreach-conversation' => "conversations" }
+    %li{'data-foreach-conversation' => "conversations", 'data-route' => 'conversation' }
       %a{ 'data-route'=>'conversation' }
         %p
           %span{ 'data-bind' => 'conversation.messages.last.body | truncate 100'}
-          %span.label.label-info{ 'data-bind' => 'conversation.scope.name', 'data-bind-class' => 'conversation.scope.class'}
+          %div.js-message-scope
+            %span.label.label-info{ 'data-bind' => 'conversation.scope.name', 'data-bind-class' => 'conversation.scope.class'}
+            %span.label.label-info{ 'data-bind' => 'conversation.scope.crowd.name', 'data-showif' => 'conversation.scope.crowd'}
+            %span.label.label-info{ 'data-bind' => 'conversation.scope.crowd.subject.name', 'data-showif' => 'conversation.scope.subject'}
+
         %p
           %span{ 'data-foreach-user'=>'conversation.users', 'data-bind'=>'user.username | append " "'}
 .block
