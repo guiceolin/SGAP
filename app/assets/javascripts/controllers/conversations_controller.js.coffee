@@ -27,3 +27,8 @@ class Sgap.ConversationsController extends Batman.Controller
 
   destroy: (params) ->
 
+  createMessage: (params) ->
+    console.log @get('newMessage').toJSON()
+    @get('newMessage').set("conversation", @get("conversation"))
+    @get('newMessage').save()
+    @redirect @get('conversation')
