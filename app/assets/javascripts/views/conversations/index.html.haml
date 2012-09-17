@@ -1,4 +1,5 @@
 .block
+  %h2 Conversas
   %ul#listings
     %li{'data-foreach-conversation' => "conversations" }
       %a{ 'data-route'=>'conversation' }
@@ -7,3 +8,13 @@
           %span.label.label-info{ 'data-bind' => 'conversation.scope.name', 'data-bind-class' => 'conversation.scope.class'}
         %p
           %span{ 'data-foreach-user'=>'conversation.users', 'data-bind'=>'user.username | append " "'}
+.block
+  %h2 Nova Conversa
+  %form{'data-formfor-conversation' => 'newConversation', 'data-event-submit' => 'create'}
+    %select{ 'data-bind' => 'selectedScope.type'}
+      %option{ :value =>''}Selecione o Escopo
+      %option{ 'data-foreach-type' => 'scopeTypes', 'data-bind' => 'type'}
+    %select{ 'data-bind' => 'selectedScope.id' }
+      %option{ :value=> ''}Selecione
+      %option{'data-foreach-scope' => 'scopes','data-bind' => 'scope.name', 'data-bind-value' => 'scope.id', 'data-bind-selected' => 'scopes.first'}
+    %input{:type => 'submit'}

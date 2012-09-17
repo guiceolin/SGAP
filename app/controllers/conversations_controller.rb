@@ -22,12 +22,9 @@ class ConversationsController < ApplicationController
   end
 
   def create
-    @conversation = Conversation.new
-    @users = User.find(params[:user_ids])
-    @users.map do |user|
-      @conversation.users << user
-    end
-    @conversation.users << current_user
+    params[:conversation].delete(:messages)
+    @conversation = Conversation.new(params[:conversation])
+    @conversation.scope_type.capitalize!
     @conversation.save
     respond_with @conversation
   end

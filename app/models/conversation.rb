@@ -1,4 +1,7 @@
 class Conversation < ActiveRecord::Base
+
+  attr_accessible :scope_id, :scope_type
+
   has_many :participations
   has_many :users, through: :participations
   has_many :messages
