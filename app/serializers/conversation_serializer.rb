@@ -1,6 +1,5 @@
 class ConversationSerializer < ActiveModel::Serializer
-  attributes :id
-  attribute :scope_obj, key: :scope
+  attributes :id, :scope_id, :scope_type
   has_many :participations, key: :participation
   has_many :messages
   has_many :users
