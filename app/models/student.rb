@@ -1,6 +1,7 @@
 class Student < User
   has_many :enrollments
   has_many :crowds, through: :enrollments
+  has_many :subjects, through: :crowds
 
   has_many :memberships
   has_many :groups, through: :memberships
