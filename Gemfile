@@ -15,6 +15,10 @@ gem "active_model_serializers", :git => "git://github.com/josevalim/active_model
 gem "batman-rails"
 gem 'haml_assets'
 
+group :development, :test do
+    gem 'railroady'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
