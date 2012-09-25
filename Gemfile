@@ -14,6 +14,7 @@ gem 'pry-rails'
 gem "active_model_serializers", :git => "git://github.com/josevalim/active_model_serializers.git"
 gem "batman-rails"
 gem 'haml_assets'
+gem 'carrierwave'
 
 group :development, :test do
     gem 'railroady'
