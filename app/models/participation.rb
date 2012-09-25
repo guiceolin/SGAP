@@ -2,6 +2,8 @@ class Participation < ActiveRecord::Base
   belongs_to :user
   belongs_to :conversation
 
+  attr_accessible :user, :user_d, :conversation, :conversation_id
+
   def archived?
     !!archived
   end

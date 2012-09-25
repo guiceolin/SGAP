@@ -13,6 +13,20 @@
 #= require jquery
 #= require jquery_ujs
 #= require jquery-ui-1.8.20.custom.min
+
+# Batman.js and its adapters
+# require batman/es5-shim
+#= require batman/batman
+#= require batman/batman.jquery
+#= require batman/batman.rails
+
+#= require sgap
+
+#= require_tree ./models
+#= require_tree ./controllers
+#= require_tree ./helpers
+
+
 #= require_tree .
 $ ->
   $('#base-tr').hide()

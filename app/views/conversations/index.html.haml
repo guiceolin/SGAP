@@ -1,9 +1,5 @@
 :javascript
-  $(function(){
-    window.view1 = new ConversationsView()
+  $(document).ready(function(){
+    Sgap.run()
   });
-.block
-  %ul#conversations
-.block
-  %input#users-select
-  %ul#users
+%div{'data-yield' => "main"}

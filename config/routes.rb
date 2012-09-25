@@ -3,6 +3,8 @@ SGAP::Application.routes.draw do
   resource :session, only: [:new,:create,:destroy]
   resources :users
   resources :conversations
+  resources :crowds, :groups, :subjects, only: [:index, :show]
+  resources :messages, only: [:create, :index]
   namespace :professor do
     resources :enunciations
     resources :crowds do

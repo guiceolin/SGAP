@@ -1,9 +1,8 @@
 class ConversationsController < ApplicationController
-  skip_before_filter :require_login
   respond_to :json, :html
 
   def index
-     respond_with current_user.conversations
+    respond_with current_user.conversations
   end
 
   def show
@@ -23,17 +22,10 @@ class ConversationsController < ApplicationController
   end
 
   def create
-    @conversation = Conversation.new
-    @users = User.find(params[:user_ids])
-    @users.map do |user|
-      @conversation.users << user
-    end
-    @conversation.users << current_user
+    params[:conversation].delete(:messages)
+    @conversation = Conversation.new(params[:conversation])
+    @conversation.scope_type.capitalize!
     @conversation.save
     respond_with @conversation
-  end
-
-  def current_user
-    User.find(2)
   end
 end

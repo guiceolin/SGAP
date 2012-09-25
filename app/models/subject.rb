@@ -6,6 +6,14 @@ class Subject < ActiveRecord::Base
   validates :description, presence: true
   has_many :crowds
   has_many :professors, :through => :crowds
+  has_many :conversations, as: :scope
+
+  before_save :fix_participations
+
+  def fix_participations
+    conversations.map(&:save)
+  end
+
 
   def to_s
     "#{name} (#{code})"
@@ -36,5 +44,9 @@ class Subject < ActiveRecord::Base
 
   def as_json options={}
     super.merge({ label: name, value: to_param })
+  end
+
+  def participations
+    crowds.map(&:participations).flatten.uniq
   end
 end

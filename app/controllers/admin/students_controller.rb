@@ -2,12 +2,12 @@ class Admin::StudentsController < ApplicationController
   respond_to :html, :json
   def index
     @students = Student.search(params[:term])
-    respond_with :admin, @students
+    respond_with :admin, @students, root: false
   end
 
   def search
     @students = Student.search(params[:terms].present? ? params[:terms] : params[:term] )
-    respond_with :admin, @students, layout: !request.xhr?
+    respond_with :admin, @students, layout: !request.xhr?, root: false
   end
 
   def new
