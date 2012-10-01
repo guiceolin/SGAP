@@ -5,3 +5,13 @@
   %p= @enunciation.description
   %h2= Enunciation.human_attribute_name :end_date
   %p= l @enunciation.end_date
+
+.block.header
+  %h2 Anexo
+  %p Novo
+  =form_tag professor_enunciation_attachments_path(@enunciation), method: 'POST', multipart: true
+  =file_field_tag 'file'
+  = submit_tag 'submit'
+  - @enunciation.attachments.each do |a|
+    %p
+      %a{:href => a.file.url }= a.file_identifier
