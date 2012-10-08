@@ -21,8 +21,8 @@ class Student < User
     end
   end
 
-  def as_json(options={})
-    super.merge({ label: name, value: to_param })
-  end
+#  def as_json(options={})
+#    super.merge({ label: name, value: to_param })
+#  end
 
  end
