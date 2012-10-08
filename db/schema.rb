@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120925185521) do
+ActiveRecord::Schema.define(:version => 20121008215536) do
 
   create_table "attachments", :force => true do |t|
     t.string   "file"
@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(:version => 20120925185521) do
   add_index "crowds", ["professor_id"], :name => "index_crowds_on_professor_id"
   add_index "crowds", ["subject_id"], :name => "index_crowds_on_subject_id"
 
+  create_table "deliveries", :force => true do |t|
+    t.integer  "message_id"
+    t.integer  "user_id"
+    t.boolean  "read"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "enrollments", :force => true do |t|
     t.integer  "student_id"
     t.integer  "crowd_id"
@@ -62,13 +70,11 @@ ActiveRecord::Schema.define(:version => 20120925185521) do
   end
 
   create_table "groups", :force => true do |t|
-    t.integer  "crowd_id"
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "enunciation_id"
   end
-
-  add_index "groups", ["crowd_id"], :name => "index_groups_on_crowd_id"
 
   create_table "memberships", :force => true do |t|
     t.integer  "student_id"
@@ -111,6 +117,7 @@ ActiveRecord::Schema.define(:version => 20120925185521) do
     t.datetime "updated_at",       :null => false
     t.string   "name"
     t.string   "type"
+    t.integer  "slug"
   end
 
 end

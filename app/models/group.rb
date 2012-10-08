@@ -2,7 +2,8 @@ class Group < ActiveRecord::Base
 
   attr_accessible :name
 
-  belongs_to :crowd
+  has_one :crowd, :through => :enunciation
+  belongs_to :enunciation
 
   has_many :memberships
   has_many :students, through: :memberships
