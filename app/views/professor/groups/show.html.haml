@@ -22,4 +22,4 @@
           %td
             = link_to m.student.name, {}#professor_student_path(m.student)
           %td
-            = link_to content_tag(:i, '', class: 'icon-remove'), professor_crowd_group_membership_path(@group.crowd,@group, m), method: :delete, confirm: "Tem certeza?"
+            = link_to content_tag(:i, '', class: 'icon-remove'), professor_enunciation_group_membership_path(@group.enunciation, @group, m), method: :delete, confirm: "Tem certeza?"
