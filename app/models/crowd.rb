@@ -14,7 +14,7 @@ class Crowd < ActiveRecord::Base
   has_many :enrollments
   has_many :students, :through => :enrollments
   has_many :enunciations
-  has_many :groups
+  has_many :groups, :through => :enunciations
   has_many :conversations, as: :scope
 
   def self.semesters_collection_for_select

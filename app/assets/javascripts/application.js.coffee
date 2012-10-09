@@ -119,7 +119,7 @@ class DataManager.Base
 class Membership extends DataManager.Base
   constructor: (attr) ->
     @resource = 'membership'
-    @source = => return "/professor/crowds/#{@fields['group'].crowd_id}/groups/#{@fields['group'].id}/memberships/"
+    @source = => return "/professor/enunciations/#{@fields['group'].enunciation_id}/groups/#{@fields['group'].id}/memberships/"
     super(attr)
     @field 'student_id'
     @field 'group_id'
@@ -143,7 +143,7 @@ class Autocompleter
 
 class MembershipAutocompleter extends Autocompleter
   constructor: (@placeholder, @group, @minLenght = 2) ->
-    @source = '/users/'
+    @source = '/admin/students/'
     super(@placeholder, @source, @minLenght)
   show: (elem) ->
     alert('b')

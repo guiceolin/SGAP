@@ -7,6 +7,31 @@
   %p= l @enunciation.end_date
 
 .block.header
+  .title
+    %h2= Group.model_name.human count: :many
+  .actions
+    =link_to "Novo Grupo", new_professor_enunciation_group_path(@enunciation), class: 'btn btn-primary'
+  %br.clear
+  %table.table.table-stripped.table-condensed
+    %thead
+      %tr
+        %th
+          = Group.human_attribute_name(:name, count: :one)
+        %th
+        %th
+        %th
+    %tbody
+      - @enunciation.groups.each do |g|
+        %tr
+          %td
+            =link_to g.name, professor_enunciation_group_path(@enunciation, g)
+          %td
+          %td
+          %td
+            = link_to content_tag(:i, '', class: 'icon-pencil'), edit_professor_enunciation_group_path(g.enunciation, g)
+            = link_to content_tag(:i, '', class: 'icon-remove'), professor_enunciation_group_path(g.enunciation, g), method: :delete, confirm: "Tem Certeza?"
+
+.block.header
   %h2 Anexo
   %p Novo
   =form_tag professor_enunciation_attachments_path(@enunciation), method: 'POST', multipart: true

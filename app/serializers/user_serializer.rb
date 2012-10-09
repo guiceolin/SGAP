@@ -1,10 +1,11 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :value
 
-  def attributes
-    hash = super
-    hash["label"] = object.name
-    hash["value"] = object.to_param
-    hash
+  def value
+    object.to_param
+  end
+
+  def label
+    object.name
   end
 end

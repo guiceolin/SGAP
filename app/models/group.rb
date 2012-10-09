@@ -2,7 +2,8 @@ class Group < ActiveRecord::Base
 
   attr_accessible :name
 
-  belongs_to :crowd
+  has_one :crowd, :through => :enunciation
+  belongs_to :enunciation
 
   has_many :memberships
   has_many :students, through: :memberships
@@ -16,7 +17,9 @@ class Group < ActiveRecord::Base
     conversations.map(&:save)
   end
 
-
+  def self.active
+    joins(:enunciation).where('enunciations.end_date >= ?', Date.today.beginning_of_day)
+  end
   def to_param
     name
   end
@@ -24,4 +27,4 @@ class Group < ActiveRecord::Base
   def participations
     students
   end
- end
+end

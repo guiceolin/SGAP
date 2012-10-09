@@ -7,13 +7,14 @@ SGAP::Application.routes.draw do
   resources :messages, only: [:create, :index]
   namespace :professor do
     resources :enunciations do
-      resources :attachments, to: "enunciation_attachments"
-    end
-    resources :crowds do
       resources :groups do
         resources :memberships, only: [:create, :show, :destroy]
       end
-      collection do
+
+      resources :attachments, to: "enunciation_attachments"
+    end
+    resources :crowds do
+            collection do
         get :search
       end
     end
