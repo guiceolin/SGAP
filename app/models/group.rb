@@ -17,7 +17,9 @@ class Group < ActiveRecord::Base
     conversations.map(&:save)
   end
 
-
+  def self.active
+    joins(:enunciation).where('enunciations.end_date >= ?', Date.today.beginning_of_day)
+  end
   def to_param
     name
   end
@@ -25,4 +27,4 @@ class Group < ActiveRecord::Base
   def participations
     students
   end
- end
+end
