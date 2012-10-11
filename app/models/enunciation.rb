@@ -4,7 +4,7 @@ class Enunciation < ActiveRecord::Base
   attr_accessible :description, :end_date, :name
   has_many :attachments, as: :attachable
 
-  before_create :clone_groups
+  after_create :clone_groups, :if => Proc.new { |e| e.groups.empty? }
 
   def to_param
     name
