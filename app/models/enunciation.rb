@@ -21,4 +21,12 @@ class Enunciation < ActiveRecord::Base
       self.groups << new_group
     end
   end
+
+  def clone_attachments(base_enunciation)
+    base_enunciation.attachments.each do |attachment|
+      new_attachment = Attachment.new
+      new_attachment.file = File.open(attachment.file.current_path)
+      self.attachments << new_attachment
+    end
+  end
 end
