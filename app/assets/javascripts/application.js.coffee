@@ -13,7 +13,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require jquery-ui-1.8.20.custom.min
-
+#= require bootstrap
 # Batman.js and its adapters
 # require batman/es5-shim
 #= require batman/batman
