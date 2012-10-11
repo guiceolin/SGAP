@@ -11,7 +11,7 @@ class Enunciation < ActiveRecord::Base
   end
 
   def last_enunciation
-    Enunciation.where(:crowd_id => crowd.id).order('end_date DESC').limit(1).first
+    Enunciation.where(:crowd_id => crowd.id).where('id != ?', id).order('end_date DESC').limit(1).first
   end
 
   def clone_groups(base_enunciation = last_enunciation)
