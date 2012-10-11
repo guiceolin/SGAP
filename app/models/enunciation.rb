@@ -15,6 +15,7 @@ class Enunciation < ActiveRecord::Base
   end
 
   def clone_groups(base_enunciation = last_enunciation)
+    return true unless base_enunciation
     base_enunciation.groups.each do |group|
       new_group = group.dup
       group.students.map { |s| new_group.students << s }
