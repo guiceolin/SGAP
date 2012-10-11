@@ -14,9 +14,8 @@ class Enunciation < ActiveRecord::Base
     Enunciation.where(:crowd_id => crowd.id).order('end_date DESC').limit(1).first
   end
 
-  def clone_groups
-    binding.pry
-    last_enunciation.groups.each do |group|
+  def clone_groups(base_enunciation = last_enunciation)
+    base_enunciation.groups.each do |group|
       new_group = group.dup
       group.students.map { |s| new_group.students << s }
       self.groups << new_group
