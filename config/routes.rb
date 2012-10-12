@@ -8,20 +8,23 @@ SGAP::Application.routes.draw do
   namespace :professor do
 
     resources :clone_enunciations, only: [:show]
-    resources :enunciations do
-      resources :groups do
-        resources :memberships, only: [:create, :show, :destroy]
-      end
-
-      resources :attachments, to: "enunciation_attachments"
-    end
-    resources :crowds do
+    resources :students do
       collection do
         get :search
       end
     end
-
-    resources :subjects, :students do
+    resources :subjects do
+      resources :crowds do
+        resources :enunciations do
+          resources :attachments, to: "enunciation_attachments"
+          resources :groups do
+            resources :memberships, only: [:create, :show, :destroy]
+          end
+        end
+        collection do
+          get :search
+        end
+      end
       collection do
         get :search
       end
