@@ -1,7 +1,7 @@
 class Professor < User
 
   has_many :crowds
-  has_many :subjects, :through => :crowds
+  has_many :subjects, :through => :crowds, :uniq => true
   has_many :enunciations, :through => :crowds
 
   def self.collection_for_selection
