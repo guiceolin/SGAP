@@ -7,6 +7,6 @@ class CloneEnunciationsController < ApplicationController
     new_enunciation.crowd = crowd
     new_enunciation.name += ' - Clonado'
     new_enunciation.save
-    redirect_to edit_professor_enunciation_path(new_enunciation)
+    redirect_to edit_professor_subject_crowd_enunciation_path(crowd.subject, crowd, new_enunciation)
   end
 end
