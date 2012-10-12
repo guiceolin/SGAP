@@ -9,5 +9,5 @@
     %td
       = l(e.end_date)
     %td
-      = link_to content_tag(:i, '', class: 'icon-pencil'), edit_professor_enunciation_path(e)
-      = link_to content_tag(:i, '', class: 'icon-remove'), professor_enunciation_path(e), method: :delete, confirm: "Tem Certeza?"
+      = link_to content_tag(:i, '', class: 'icon-pencil'), edit_professor_subject_crowd_enunciation_path(e.crowd.subject, e.crowd, e)
+      = link_to content_tag(:i, '', class: 'icon-remove'), professor__subject_crowd_enunciation_path(e.crowd.subject, e.crowd, e), method: :delete, confirm: "Tem Certeza?"

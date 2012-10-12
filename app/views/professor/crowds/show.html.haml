@@ -11,7 +11,7 @@
   .title
     %h2= Enunciation.model_name.human count: :many
   .actions
-    =link_to "Novo Enunciado", new_professor_enunciation_path, class: 'btn btn-primary'
+    =link_to "Novo Enunciado", new_professor_subject_crowd_enunciation_path(@crowd.subject,@crowd), class: 'btn btn-primary'
   %br.clear
   %table.table.table-stripped.table-compensed
     %thead
@@ -26,14 +26,14 @@
         - @crowd.enunciations.each do |e|
           %tr
             %td
-              = link_to e.name, professor_enunciation_path(e.name)
+              = link_to e.name, professor_subject_crowd_enunciation_path(@crowd.subject, @crowd, e.name)
             %td
               = e.description
             %td
               = l(e.end_date)
             %td
-              = link_to content_tag(:i, '', class: 'icon-pencil'), edit_professor_enunciation_path(e)
-              = link_to content_tag(:i, '', class: 'icon-remove'), professor_enunciation_path(e), method: :delete, confirm: "Tem Certeza?"
+              = link_to content_tag(:i, '', class: 'icon-pencil'), edit_professor_subject_crowd_enunciation_path(@crowd.subject, @crowd, e)
+              = link_to content_tag(:i, '', class: 'icon-remove'), professor_subject_crowd_enunciation_path(@crowd.subject, @crowd, e), method: :delete, confirm: "Tem Certeza?"
 
 .block
   %h2= Student.model_name.human count: :many
