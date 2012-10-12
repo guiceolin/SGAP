@@ -15,7 +15,7 @@ module ApplicationHelper
     breadcrumb_string = content_tag('ul', class: 'breadcrumb') do
       all_paths.collect do |crumb|
         content_tag(:li) do
-          link_to(crumb.first.capitalize, crumb.last) + content_tag(:span, '/', class: 'divider')
+          link_to(CGI::unescape(crumb.first.capitalize), crumb.last) + content_tag(:span, '/', class: 'divider')
         end
       end.join('').html_safe
     end
