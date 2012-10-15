@@ -35,7 +35,7 @@ class Professor::EnunciationsController < ApplicationController
     @enunciation.update_attributes(params[:enunciation])
 
     if @enunciation.save
-      respond_with :professor, @enunciation
+      respond_with :professor, current_crowd.subject, current_crowd, @enunciation
     else
       render :edit
     end
