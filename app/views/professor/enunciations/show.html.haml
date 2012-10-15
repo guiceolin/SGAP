@@ -1,13 +1,13 @@
 #cloneModal.modal.hide.fade
-  .modal-header
-    %button.close{:type => 'button', :'data-dismiss'=>'modal'} &times;
-    %h3 Clonar Enunciado
-  .modal-body
-    = form_tag "/professor/clone_enunciations/#{@enunciation.id}", method: :get, class: 'form-inline'
-    Selecione a Turma:
-    = select_tag "crowd_id", options_from_collection_for_select(@current_user.crowds, "id", "name")
-  .modal-footer
-    = submit_tag 'Clonar', class: 'btn btn-primary'
+  = form_tag "/professor/clone_enunciations/#{@enunciation.id}", method: :get, class: 'form-inline' do
+    .modal-header
+      %button.close{:type => 'button', :'data-dismiss'=>'modal'} &times;
+      %h3 Clonar Enunciado
+    .modal-body
+      Selecione a Turma:
+      = select_tag "crowd_id", options_from_collection_for_select(@current_user.crowds, "id", "name")
+    .modal-footer
+      = submit_tag 'Clonar', class: 'btn btn-primary'
 
 .header.block
   .title
