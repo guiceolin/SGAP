@@ -21,6 +21,7 @@ class Sgap.ConversationsController extends Batman.Controller
     @newConversation.set 'scope', @get('scopes').find (item) =>
       @get('selectedScope').id == item.get('id').toString()
     @newConversation.save()
+    location.reload()
     @redirect Sgap.Conversation
 
   update: (params) ->

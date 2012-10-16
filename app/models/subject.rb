@@ -19,6 +19,8 @@ class Subject < ActiveRecord::Base
     "#{name} (#{code})"
   end
 
+  alias :as_scope :to_s
+
   def to_param
     code
   end

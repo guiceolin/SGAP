@@ -2,7 +2,7 @@ class ConversationsController < ApplicationController
   respond_to :json, :html
 
   def index
-    respond_with current_user.conversations
+    respond_with current_user.conversations.where(approved: true)
   end
 
   def show

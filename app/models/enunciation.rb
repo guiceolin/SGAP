@@ -10,6 +10,10 @@ class Enunciation < ActiveRecord::Base
     name
   end
 
+  def as_scope
+    "#{name} - #{crowd.as_scope}"
+  end
+
   def last_enunciation
     Enunciation.where(:crowd_id => crowd.id).where('id != ?', id).order('end_date DESC').limit(1).first
   end

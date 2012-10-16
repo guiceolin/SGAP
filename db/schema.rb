@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121008215536) do
+ActiveRecord::Schema.define(:version => 20121015194717) do
 
   create_table "attachments", :force => true do |t|
     t.string   "file"
@@ -22,11 +22,12 @@ ActiveRecord::Schema.define(:version => 20121008215536) do
   end
 
   create_table "conversations", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "scope_id"
     t.string   "scope_type"
     t.string   "topic"
+    t.boolean  "approved",   :default => false
   end
 
   create_table "crowds", :force => true do |t|

@@ -1,0 +1,24 @@
+.header.block
+  .title
+    %h1
+      Aprovar Conversas
+  %br.clear
+
+.header.block
+  %table.table.table-stripped.table-compensed
+    %thead
+      %tr
+        %th
+          Assunto
+        %th
+          Escopo
+        %th
+
+    %tbody
+      - @unapproved_conversations.each do |c|
+        %tr
+          %td= c.topic
+          %td= c.scope.as_scope
+          %td
+            = link_to '<i class="icon-ok"></i>'.html_safe, conversation_approvation_path(c), method: :put
+            = link_to '<i class="icon-remove"></i>'.html_safe, conversation_approvation_path(c), method: :delete, confirm: 'Tem Certeza?'

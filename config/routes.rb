@@ -5,6 +5,7 @@ SGAP::Application.routes.draw do
   resources :conversations
   resources :crowds, :groups, :subjects, only: [:index, :show]
   resources :messages, only: [:create, :index]
+  resources :conversation_approvations, only: [:index,:update,:destroy]
   namespace :professor do
 
     resources :clone_enunciations, only: [:show]
