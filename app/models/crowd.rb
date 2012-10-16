@@ -38,6 +38,10 @@ class Crowd < ActiveRecord::Base
     end
   end
 
+  def as_scope
+    "#{self.to_param} - #{subject}"
+  end
+
   def as_json options={}
     super(include: :students).merge({ label: name, value: to_param })
   end
