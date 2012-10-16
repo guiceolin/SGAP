@@ -1,5 +1,10 @@
+.block.header
+  .title{'style' =>'float:left;'}
+    %h2 Conversas
+  .actions{'style' => 'float:right;'}
+    %a.btn.btn-primary{:href => '/conversation_approvations/'}Moderar
+  %br.clear
 .block
-  %h2 Conversas
   %ul#listings
     %li{'data-foreach-conversation' => "conversations", 'data-route' => 'conversation' }
       %a{ 'data-route'=>'conversation' }
