@@ -1,3 +1,13 @@
+#new-task-modal.modal.hide.fade
+  = simple_form_for [:students, @enunciation.crowd,@enunciation,:solution,Task.new], method: :post, class: 'form-inline' do |f|
+    .modal-header
+      %button.close{:type => 'button', :'data-dismiss'=>'modal'} &times;
+      %h3 Nova Tarefa
+    .modal-body
+      = f.input :description, label: 'Descrição'
+    .modal-footer
+      = f.submit 'Criar', class: 'btn btn-primary'
+
 .header.block
   .title
     %h1= @enunciation.name
@@ -15,4 +25,34 @@
       %a{:href => a.file.url }= a.file_identifier
 
 .block.header
-  %h2 Solução
+  .title
+    %h1 Solução
+  %br.clear
+
+.block.header
+  .title
+    %h2 Tarefas
+  .actions
+    %button.btn.btn-primary{:type => "button",:'data-toggle'=>"modal",:'data-target'=>"#new-task-modal"} Nova Task
+  %br.clear
+
+.block
+  %table.table
+    %thead
+      %tr
+        %th Andamento
+        %th Descrição
+        %th Ações
+    %tbody
+      - @solution.tasks.each do |task|
+        %tr
+          %td.span3
+            = "<span class='label label-success'>Concluída</span>".html_safe if task.completed?
+            = "<span class='label label-warning'>Iniciada</span>".html_safe if task.started?
+            = "<span class='label label-important'>Não iniciada</span>".html_safe unless task.completed? || task.started?
+          %td
+            = task# link_to task, project_task_path(@project, task)
+          %td.span3
+            //= add_to_calendar task
+            = link_to "<i class='icon-stop'></i>".html_safe + ' Finalizar', students_crowd_enunciation_solution_complete_task_path(@enunciation.crowd, @enunciation, task), :method => :put if task.started? #&& can?(:manage, task)
+            = link_to "<i class='icon-play'></i>".html_safe + ' Iniciar', students_crowd_enunciation_solution_start_task_path(@enunciation.crowd, @enunciation, task) ,:method => :put if !task.started? && !task.completed? #&& can?(:manage, task)

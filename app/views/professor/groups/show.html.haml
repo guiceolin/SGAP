@@ -23,3 +23,30 @@
             = link_to m.student.name, {}#professor_student_path(m.student)
           %td
             = link_to content_tag(:i, '', class: 'icon-remove'), professor_subject_crowd_enunciation_group_membership_path(@current_subject, @current_crowd, @group.enunciation, @group, m), method: :delete, confirm: "Tem certeza?"
+
+.block.header
+  .title
+    %h1 Solução
+  %br.clear
+
+.block.header
+  .title
+    %h2 Tarefas
+  .actions
+  %br.clear
+
+.block
+  %table.table
+    %thead
+      %tr
+        %th Andamento
+        %th Descrição
+    %tbody
+      - @group.solution.tasks.each do |task|
+        %tr
+          %td.span3
+            = "<span class='label label-success'>Concluída</span>".html_safe if task.completed?
+            = "<span class='label label-warning'>Iniciada</span>".html_safe if task.started?
+            = "<span class='label label-important'>Não iniciada</span>".html_safe unless task.completed? || task.started?
+          %td
+            = task# link_to task, project_task_path(@project, task)
