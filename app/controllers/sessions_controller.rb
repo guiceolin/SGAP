@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:email], params[:password])
     if user
       login user
-      redirect_to root_path
+      redirect_to "/#{user.type.downcase}/"
     else
       redirect_to new_session_path
     end

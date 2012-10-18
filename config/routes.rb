@@ -61,8 +61,8 @@ SGAP::Application.routes.draw do
     end
   end
 
-  get 'sign_in',  to: 'sessions#new'
-  get 'sign_out', to: 'sessions#destroy'
+  get 'login',  to: 'sessions#new'
+  get 'logout', to: 'sessions#destroy'
 
 
   get ':dashboard', to: 'dashboard#index'
