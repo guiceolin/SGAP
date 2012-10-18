@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def add_to_calendar object, options = {}
+    label = options.delete(:label) || ''
+    link_to "<i class='icon-calendar'></i>".html_safe + label, "http://www.google.com/calendar/event?ctext=+#{object.calendar_string}+&action=TEMPLATE&pprop=HowCreated%3AQUICKADD", options
+  end
 
   def breadcrumb(path)
     all_paths = path.split('/').inject([]) do |memo,new|
