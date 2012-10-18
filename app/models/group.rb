@@ -32,6 +32,5 @@ class Group < ActiveRecord::Base
 
   def create_solution
     self.solution = Solution.new
-    self.solution.save
   end
 end
