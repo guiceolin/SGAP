@@ -1,0 +1,9 @@
+.block.header
+  .title
+    %h1 Disciplinas
+  %br.clear
+
+.block
+  %ul
+    - @crowds.each do |c|
+      %li= link_to c.subject.name, students_crowd_path(c)

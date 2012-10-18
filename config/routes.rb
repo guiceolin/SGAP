@@ -32,6 +32,11 @@ SGAP::Application.routes.draw do
     end
 
   end
+  namespace :students do
+    resources :crowds, only: [:show, :index] do
+      resources :enunciations, only: [:show]
+    end
+  end
   namespace :admin do
     resources :imports, only: [:new, :create]
     resources :enrollments, only: :create

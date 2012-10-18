@@ -1,0 +1,11 @@
+.block.header
+  .title
+    %h1 Enunciados
+  %br.clear
+
+.block
+  %ul
+    - @crowd.enunciations.each do |e|
+      %li
+        = link_to e.name, students_crowd_enunciation_path(@crowd,e)
+
