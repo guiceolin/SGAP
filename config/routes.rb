@@ -33,6 +33,7 @@ SGAP::Application.routes.draw do
 
   end
   namespace :admin do
+    resources :imports, only: [:new, :create]
     resources :enrollments, only: :create
     resources :students, :subjects, :professors do
       collection do
