@@ -38,6 +38,7 @@ SGAP::Application.routes.draw do
         resource :solution do
           resources :tasks
           resources :start_tasks, only: :update
+          resources :complete_tasks, only: :update
         end
       end
     end
