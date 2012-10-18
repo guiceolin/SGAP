@@ -5,6 +5,7 @@ class Student < User
 
   has_many :memberships
   has_many :groups, through: :memberships
+  has_many :solutions, through: :groups
 
   def self.search(terms)
 

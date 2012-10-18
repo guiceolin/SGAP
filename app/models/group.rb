@@ -3,6 +3,7 @@ class Group < ActiveRecord::Base
   attr_accessible :name
 
   has_one :crowd, :through => :enunciation
+  has_one :solution
   belongs_to :enunciation
 
   has_many :memberships
@@ -12,6 +13,7 @@ class Group < ActiveRecord::Base
   validates_presence_of :name
 
   before_save :fix_participations
+  after_create :create_solution
 
   def fix_participations
     conversations.map(&:save)
@@ -26,5 +28,10 @@ class Group < ActiveRecord::Base
 
   def participations
     students
+  end
+
+  def create_solution
+    self.solution = Solution.new
+    self.solution.save
   end
 end
