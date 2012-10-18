@@ -36,6 +36,6 @@ class Task < ActiveRecord::Base
   end
 
   def calendar_string
-    CGI.escape("#{description} #{project.end_date}")
+    CGI.escape("#{description} #{solution.group.enunciation.end_date}")
   end
 end
