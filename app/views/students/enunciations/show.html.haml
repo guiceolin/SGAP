@@ -47,12 +47,12 @@
       - @solution.tasks.each do |task|
         %tr
           %td.span3
-            = "<span class='label success'>Concluída</span>".html_safe if task.completed?
-            = "<span class='label warning'>Iniciada</span>".html_safe if task.started?
-            = "<span class='label important'>Não iniciada</span>".html_safe unless task.completed? || task.started?
+            = "<span class='label label-success'>Concluída</span>".html_safe if task.completed?
+            = "<span class='label label-warning'>Iniciada</span>".html_safe if task.started?
+            = "<span class='label label-important'>Não iniciada</span>".html_safe unless task.completed? || task.started?
           %td
             = task# link_to task, project_task_path(@project, task)
           %td.span3
             //= add_to_calendar task
             //= link_to image_tag('icons/clock_stop.png').html_safe + ' Finalizar', complete_project_task_path(task.project, task), :method => :put if task.started? #&& can?(:manage, task)
-            //= link_to image_tag('icons/clock_play.png').html_safe + ' Iniciar', start_project_task_path(task.project, task), :method => :put if !task.started? && !task.completed? #&& can?(:manage, task)
+            = link_to "<i class='icon-play'></i>".html_safe + ' Iniciar', students_crowd_enunciation_solution_start_task_path(@enunciation.crowd, @enunciation, task) ,:method => :put if !task.started? && !task.completed? #&& can?(:manage, task)
