@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121015194717) do
+ActiveRecord::Schema.define(:version => 20121018012834) do
 
   create_table "attachments", :force => true do |t|
     t.string   "file"
@@ -99,6 +99,12 @@ ActiveRecord::Schema.define(:version => 20121015194717) do
     t.integer  "last_read",       :default => 0
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+  end
+
+  create_table "solutions", :force => true do |t|
+    t.integer  "group_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "subjects", :force => true do |t|
