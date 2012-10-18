@@ -1,5 +1,6 @@
 module ApplicationHelper
   def add_to_calendar object, options = {}
+    options.reverse_merge! target: '_blank'
     label = options.delete(:label) || ''
     link_to "<i class='icon-calendar'></i>".html_safe + label, "http://www.google.com/calendar/event?ctext=+#{object.calendar_string}+&action=TEMPLATE&pprop=HowCreated%3AQUICKADD", options
   end
