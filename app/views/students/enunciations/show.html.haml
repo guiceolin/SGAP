@@ -54,5 +54,5 @@
             = task# link_to task, project_task_path(@project, task)
           %td.span3
             //= add_to_calendar task
-            //= link_to image_tag('icons/clock_stop.png').html_safe + ' Finalizar', complete_project_task_path(task.project, task), :method => :put if task.started? #&& can?(:manage, task)
+            = link_to "<i class='icon-stop'></i>".html_safe + ' Finalizar', students_crowd_enunciation_solution_complete_task_path(@enunciation.crowd, @enunciation, task), :method => :put if task.started? #&& can?(:manage, task)
             = link_to "<i class='icon-play'></i>".html_safe + ' Iniciar', students_crowd_enunciation_solution_start_task_path(@enunciation.crowd, @enunciation, task) ,:method => :put if !task.started? && !task.completed? #&& can?(:manage, task)
