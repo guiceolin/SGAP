@@ -37,6 +37,7 @@ SGAP::Application.routes.draw do
       resources :enunciations, only: [:show] do
         resource :solution do
           resources :tasks
+          resources :start_tasks, only: :update
         end
       end
     end
