@@ -1,5 +1,7 @@
 SGAP::Application.routes.draw do
 
+  match '/student/' => redirect("/students/crowds/")
+  match '/professor/' => redirect("/professor/subjects/")
   resource :session, only: [:new,:create,:destroy]
   resources :users
   resources :conversations
