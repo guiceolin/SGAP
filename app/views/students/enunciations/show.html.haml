@@ -1,0 +1,18 @@
+.header.block
+  .title
+    %h1= @enunciation.name
+  %br.clear
+.block
+  %h2= Enunciation.human_attribute_name :description
+  %p= @enunciation.description
+  %h2= Enunciation.human_attribute_name :end_date
+  %p= l @enunciation.end_date
+
+.block.header
+  %h2 Anexos
+  - @enunciation.attachments.each do |a|
+    %p
+      %a{:href => a.file.url }= a.file_identifier
+
+.block.header
+  %h2 Solução
