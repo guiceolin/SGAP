@@ -15,6 +15,7 @@ gem "active_model_serializers", :git => "git://github.com/josevalim/active_model
 gem "batman-rails"
 gem 'haml_assets'
 gem 'carrierwave'
+gem 'omniauth-google-oauth2'
 
 group :development, :test do
     gem 'railroady'

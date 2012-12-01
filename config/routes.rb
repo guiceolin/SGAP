@@ -1,5 +1,5 @@
 SGAP::Application.routes.draw do
-
+  match "/auth/:provider/callback" => "google_sessions#create"
   match '/student/' => redirect("/students/crowds/")
   match '/professor/' => redirect("/professor/subjects/")
   resource :session, only: [:new,:create,:destroy]
