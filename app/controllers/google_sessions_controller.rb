@@ -1,7 +1,7 @@
 class GoogleSessionsController < ApplicationController
   def create
-    raise request.env["omniauth.auth"].inspect
-    raise params.inspect
+    #exampleoauth callback
+    @auth = request.env["omniauth.auth"]
+    @token = @auth["credentials"]["token"]
   end
 end
-
