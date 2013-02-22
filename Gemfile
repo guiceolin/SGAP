@@ -16,6 +16,8 @@ gem "batman-rails"
 gem 'haml_assets'
 gem 'carrierwave'
 gem 'omniauth-google-oauth2'
+gem 'google-api-client', :require => 'google/api_client'
+
 
 group :development, :test do
     gem 'railroady'
