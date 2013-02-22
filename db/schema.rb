@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121201204248) do
+ActiveRecord::Schema.define(:version => 20130222031640) do
 
   create_table "attachments", :force => true do |t|
     t.string   "file"
@@ -129,13 +129,14 @@ ActiveRecord::Schema.define(:version => 20121201204248) do
     t.string   "email"
     t.string   "crypted_password"
     t.string   "salt"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "name"
     t.string   "type"
     t.integer  "slug"
     t.string   "oauth_token"
     t.string   "oauth_id"
+    t.string   "google_calendar_id"
   end
 
 end
