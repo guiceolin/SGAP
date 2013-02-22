@@ -20,6 +20,7 @@ gem 'google-api-client', :require => 'google/api_client'
 
 
 group :development, :test do
+    gem 'rspec-rails'
     gem 'railroady'
 end
 
