@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121018044138) do
+ActiveRecord::Schema.define(:version => 20121201204248) do
 
   create_table "attachments", :force => true do |t|
     t.string   "file"
@@ -134,6 +134,8 @@ ActiveRecord::Schema.define(:version => 20121018044138) do
     t.string   "name"
     t.string   "type"
     t.integer  "slug"
+    t.string   "oauth_token"
+    t.string   "oauth_id"
   end
 
 end
