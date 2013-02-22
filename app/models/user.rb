@@ -21,6 +21,11 @@ class User < ActiveRecord::Base
     username
   end
 
+  def google_calendar
+    Calendar.new(google_calendar_id, oauth_token)
+  end
+
+
   def self.authenticate(email,password)
     user = find_by_email(email)
     if user && user.crypted_password == user.encrypt(password, user.salt)
