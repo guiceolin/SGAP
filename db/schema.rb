@@ -134,9 +134,9 @@ ActiveRecord::Schema.define(:version => 20130222031640) do
     t.string   "name"
     t.string   "type"
     t.integer  "slug"
-    t.string   "oauth_token"
-    t.string   "oauth_id"
     t.string   "google_calendar_id"
+    t.string   "oauth_id"
+    t.string   "oauth_token"
   end
 
 end
