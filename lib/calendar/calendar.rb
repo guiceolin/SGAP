@@ -1,34 +1,27 @@
 class Calendar
 
-  attr_reader :id
-  def initialize(id = nil, token = nil)
-    @id = id
-    @token = token
+  attr_accessor :id, :summary
+  def initialize(attr = {})
+    @client = ::Client.new(attr[:user])
+    self.id = attr[:id]
+    self.summary = attr[:summary]
   end
 
-  def events
-    @events ||= ::Event.list(@id, @token)
+  def save
+    unless id.present?
+      self.id = self.class.create(@client, self.summary)
+      true
+    end
   end
 
-  def events!
-    @events = ::Event.list(@id, @token)
-  end
-
-  def add_event(sumary=nil)
-    ::Event.create(@id, @token, sumary)
-  end
-
-  def self.create(token)
-    client = Google::APIClient.new
-    client.authorization.access_token = token
+  def self.create(client, summary)
+    summary ||= "TRABALHO"
     service = client.discovered_api('calendar', 'v3')
-    @result = client.execute(
-      :api_method => service.calendars.insert,
-      :parameters => {},
-      body_object: { summary: 'RAILS' },
-      :headers => {'Content-Type' => 'application/json'})
-    binding.pry
-    JSON.parse(@result.body)["id"]
+    result = client.execute(
+      api_method:  service.calendars.insert,
+      parameters:  {},
+      body_object: { summary: summary })
+    JSON.parse(result.body)["id"]
   end
 
 end
