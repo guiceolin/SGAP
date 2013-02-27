@@ -1,40 +1,62 @@
 class Event
 
-  def self.list(id,token)
-    client, service = self.connect(token)
-    result = client.execute(
-      :api_method => service.events.list,
-      :parameters => {'calendarId' => id },
-      :headers => {'Content-Type' => 'application/json'}
-    )
-    result.data.items
+  attr_accessor :id, :summary, :start_date, :end_date, :user, :calendar_id, :client
+  def initialize(attr = {})
+    self.calendar_id = attr[:calendar_id]
+    self.id = attr[:id]
+    self.summary = attr[:summary]
+    self.start_date = attr[:start_date]
+    self.end_date = attr[:end_date]
+    self.client = Client.new(attr[:user])
   end
 
-  def self.create(id, token, sumary="")
-    client, service = self.connect(token)
+  def save
+    unless id.present?
+      self.id = self.class.create(calendar_id, @client, start_date, end_date, summary )
+      true
+    else
+      self.class.update(calendar_id, id, @client, start_date, end_date, summary)
+    end
+  end
+
+  def self.update(calendar_id, id, client, start_date = nil, end_date = nil, summary = nil)
+    body = {}
+    body['summary'] = summary if summary.present?
+    body['start'] = { 'date' => start_date } if start_date.present?
+    body['end'] = { 'date' => end_date } if end_date.present?
     result = client.execute(
-      api_method: service.events.insert,
+      api_method: service(client).events.insert,
+      parameters: { 'calendarId' => calendar_id, 'event_id' => id },
+      body_object: body,
+      headers: {'Content-Type' => 'application/json'}
+    )
+    true
+  end
+
+  def self.create(id, client, start_date = nil, end_date = nil , summary = nil)
+    result = client.execute(
+      api_method: service(client).events.insert,
       parameters: { 'calendarId' => id },
       body_object: {
-        'summary' => sumary,
+        'summary' => summary,
         'start' => {
-          'date' => '2013-02-23'
+          'date' => start_date
         },
         'end' => {
-          'date' => '2013-02-23'
+          'date' => end_date
         },
       },
       :headers => {'Content-Type' => 'application/json'}
     )
+
+    binding.pry
+    JSON.parse(result.body)["id"]
   end
 
 
   private
-  def self.connect(token)
-    client = Google::APIClient.new
-    client.authorization.access_token = token
-    service = client.discovered_api('calendar', 'v3')
-    [client, service]
+  def self.service(client)
+    client.discovered_api('calendar', 'v3')
   end
 
 end
