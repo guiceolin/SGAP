@@ -10,7 +10,8 @@ class Calendar
   def save
     unless id.present?
       self.id = self.class.create(@client, self.summary)
-      true
+    else
+      id
     end
   end
 
