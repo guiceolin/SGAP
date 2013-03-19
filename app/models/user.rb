@@ -12,10 +12,18 @@ class User < ActiveRecord::Base
 
   has_many :participations
   has_many :conversations, through: :participations
+  has_many :google_tasks
 
   def to_s
     name
   end
+
+  def create_google_task(task)
+    if google_calendar_id
+      GoogleTask.create(task_id: task.id, user_id: self.id)
+    end
+  end
+
 
   def to_param
     username

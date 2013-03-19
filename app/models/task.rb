@@ -1,12 +1,23 @@
 class Task < ActiveRecord::Base
   belongs_to :solution
+  has_many :google_tasks
 
   validates :description, :presence => true
+  after_create :create_google_task
 
-  attr_accessible :description
+  attr_accessible :description, :scheduled_start_date, :scheduled_end_date
+
+  def create_google_task
+    solution.group.students.map do |s|
+      s.create_google_task(self)
+    end
+  end
 
   def start
-    self.start_date.blank? && !!(self.start_date = Date.today)
+    if self.start_date.blank?
+      self.start_date = Date.today
+      google_tasks.map { |gt| gt.update_date(start_date: start_date.to_s)}
+    end
   end
 
   def started?
@@ -14,7 +25,10 @@ class Task < ActiveRecord::Base
   end
 
   def complete
-    self.start_date.present? && !!(self.end_date = Time.now)
+    if self.start_date.present?
+      self.end_date = Date.today
+      google_tasks.map { |gt| gt.update_date(end_date: end_date.to_s) }
+    end
   end
 
   def completed?
