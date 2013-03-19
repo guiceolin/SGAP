@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130222231239) do
+ActiveRecord::Schema.define(:version => 20130319020359) do
 
   create_table "attachments", :force => true do |t|
     t.string   "file"
@@ -70,6 +70,12 @@ ActiveRecord::Schema.define(:version => 20130222231239) do
     t.integer  "crowd_id"
   end
 
+  create_table "google_tasks", :force => true do |t|
+    t.integer "task_id"
+    t.integer "user_id"
+    t.string  "google_id"
+  end
+
   create_table "groups", :force => true do |t|
     t.string   "name"
     t.datetime "created_at",     :null => false
@@ -115,14 +121,8 @@ ActiveRecord::Schema.define(:version => 20130222231239) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "tasks", :force => true do |t|
-    t.date     "start_date"
-    t.date     "end_date"
-    t.integer  "solution_id"
-    t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
+# Could not dump table "tasks" because of following StandardError
+#   Unknown type 'data' for column 'scheduled_start_date'
 
   create_table "users", :force => true do |t|
     t.string   "username"
