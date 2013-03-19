@@ -7,5 +7,6 @@ class GoogleSessionsController < ApplicationController
     current_user.oauth_refresh_token = auth["credentials"]["refresh_token"]
     current_user.oauth_expires_at = auth["credentials"]["expires_in"]
     current_user.save
+    redirect_to edit_user_path(current_user)
   end
 end
