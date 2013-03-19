@@ -22,11 +22,11 @@ class Event
   def self.update(calendar_id, id, client, start_date = nil, end_date = nil, summary = nil)
     body = {}
     body['summary'] = summary if summary.present?
-    body['start'] = { 'date' => start_date } if start_date.present?
+    body['start'] =  { 'date' => start_date } if start_date.present?
     body['end'] = { 'date' => end_date } if end_date.present?
     result = client.execute(
-      api_method: service(client).events.insert,
-      parameters: { 'calendarId' => calendar_id, 'event_id' => id },
+      api_method: service(client).events.patch,
+      parameters: { 'calendarId' => calendar_id, 'eventId' => id },
       body_object: body,
       headers: {'Content-Type' => 'application/json'}
     )
@@ -48,8 +48,6 @@ class Event
       },
       :headers => {'Content-Type' => 'application/json'}
     )
-
-    binding.pry
     JSON.parse(result.body)["id"]
   end
 
