@@ -1,7 +1,7 @@
 :javascript
   $(function(){
     //window.currentGroup = new Group(#{@group.attributes.to_json});
-    new MembershipAutocompleter($("#autocomplete"), #{@group.attributes.to_json} )
+    new MembershipAutocompleter($("#autocomplete"), #{@group.attributes.merge!(:crowd_id => @group.crowd.name).merge!(:subject_id => @group.crowd.subject.name).to_json} )
     });
 .header.block
   %h1= @group.name

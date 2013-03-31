@@ -16,7 +16,4 @@
           %th
             = f.input :name, label: false, placeholder: Crowd.human_attribute_name(:name)
       %tbody
-        - @subject.crowds.each do |c|
-          %tr
-            %td
-              =link_to c.name, professor_subject_crowd_path(@subject,c)
+        =render 'professor/crowds/table'

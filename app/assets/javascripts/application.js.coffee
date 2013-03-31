@@ -119,7 +119,7 @@ class DataManager.Base
 class Membership extends DataManager.Base
   constructor: (attr) ->
     @resource = 'membership'
-    @source = => return "/professor/enunciations/#{@fields['group'].enunciation_id}/groups/#{@fields['group'].id}/memberships/"
+    @source = => return "/professor/subjects/#{@fields.group.subject_id}/crowds/#{@fields.group.crowd_id}/enunciations/#{@fields['group'].enunciation_id}/groups/#{@fields['group'].id}/memberships/"
     super(attr)
     @field 'student_id'
     @field 'group_id'
