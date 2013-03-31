@@ -42,9 +42,9 @@ class Professor::EnunciationsController < ApplicationController
   end
 
   def destroy
-    @enunciation = current_crowd.enunciation.find_by_name(params[:id])
+    @enunciation = current_crowd.enunciations.find_by_name(params[:id])
     @enunciation.destroy
-    respond_with :professor, @enunciation
+    respond_with :professor, current_crowd.subject, current_crowd, @enunciation
   end
 
   private

@@ -3,7 +3,7 @@
     %h1
       = Enunciation.model_name.human(count: :one)
   .actions
-    = link_to "Novo Enunciado", new_professor_enunciation_path, class: 'btn btn-primary'
+    = link_to "Novo Enunciado", new_professor_subject_crowd_enunciation_path(@enunciations.first.crowd.subject, @enunciations.first.crowd), class: 'btn btn-primary'
   %br.clear
 .block.body
   %table.table.table-stripped.table-compensed

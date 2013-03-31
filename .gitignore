@@ -19,3 +19,4 @@ doc/models_brief.svg
 doc/models_complete.svg
 public/uploads/
 config/google_credentials.yml
+.vagrant

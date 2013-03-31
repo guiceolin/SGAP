@@ -11,6 +11,7 @@ class Professor::SubjectsController < ApplicationController
   end
   def show
     @subject = current_user.subjects.find_by_code(params[:id])
+    @crowds = @subject.crowds
     respond_with :admin, @subject
   end
 end

@@ -1,0 +1,3 @@
+[submodule "puppet/modules/gitolite-puppet"]
+	path = puppet/modules/gitolite-puppet
+	url = git@github.com:guiceolin/gitolite-puppet.git
