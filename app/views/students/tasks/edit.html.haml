@@ -1,0 +1,7 @@
+.header.block
+  %h1 Editar Tarefa
+.block
+  = simple_form_for [:students, @enunciation.crowd, @enunciation, :solution, @task], html: { class: 'form-horizontal' } do |f|
+    = render partial: 'form', locals: { f:f }
+    .form-actions
+      = f.submit class: 'btn btn-primary'
