@@ -11,6 +11,8 @@ class Admin::ImportsController < ApplicationController
       importer = CrowdImporter.new
     when 'students'
       importer = StudentImporter.new
+    when 'professors'
+      importer = ProfessorImporter.new
     else
       raise 'Parametro Invalido'
     end
