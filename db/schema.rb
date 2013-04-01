@@ -43,14 +43,6 @@ ActiveRecord::Schema.define(:version => 20130319020359) do
   add_index "crowds", ["professor_id"], :name => "index_crowds_on_professor_id"
   add_index "crowds", ["subject_id"], :name => "index_crowds_on_subject_id"
 
-  create_table "deliveries", :force => true do |t|
-    t.integer  "message_id"
-    t.integer  "user_id"
-    t.boolean  "read"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "enrollments", :force => true do |t|
     t.integer  "student_id"
     t.integer  "crowd_id"
@@ -121,8 +113,16 @@ ActiveRecord::Schema.define(:version => 20130319020359) do
     t.datetime "updated_at",  :null => false
   end
 
-# Could not dump table "tasks" because of following StandardError
-#   Unknown type 'data' for column 'scheduled_start_date'
+  create_table "tasks", :force => true do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "solution_id"
+    t.string   "description"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.date     "scheduled_start_date"
+    t.date     "scheduled_end_date"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username"
@@ -133,7 +133,6 @@ ActiveRecord::Schema.define(:version => 20130319020359) do
     t.datetime "updated_at",          :null => false
     t.string   "name"
     t.string   "type"
-    t.integer  "slug"
     t.string   "google_calendar_id"
     t.string   "oauth_refresh_token"
     t.string   "oauth_access_token"
