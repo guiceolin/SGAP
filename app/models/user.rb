@@ -12,14 +12,27 @@ class User < ActiveRecord::Base
 
   has_many :participations
   has_many :conversations, through: :participations
+  has_many :google_tasks
 
   def to_s
     name
   end
 
+  def create_google_task(task)
+    if google_calendar_id
+      GoogleTask.create(task_id: task.id, user_id: self.id)
+    end
+  end
+
+
   def to_param
     username
   end
+
+  def google_calendar
+    Calendar.new(google_calendar_id, oauth_token)
+  end
+
 
   def self.authenticate(email,password)
     user = find_by_email(email)

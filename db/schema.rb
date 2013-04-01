@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121018044138) do
+ActiveRecord::Schema.define(:version => 20130319020359) do
 
   create_table "attachments", :force => true do |t|
     t.string   "file"
@@ -43,14 +43,6 @@ ActiveRecord::Schema.define(:version => 20121018044138) do
   add_index "crowds", ["professor_id"], :name => "index_crowds_on_professor_id"
   add_index "crowds", ["subject_id"], :name => "index_crowds_on_subject_id"
 
-  create_table "deliveries", :force => true do |t|
-    t.integer  "message_id"
-    t.integer  "user_id"
-    t.boolean  "read"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "enrollments", :force => true do |t|
     t.integer  "student_id"
     t.integer  "crowd_id"
@@ -68,6 +60,12 @@ ActiveRecord::Schema.define(:version => 20121018044138) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "crowd_id"
+  end
+
+  create_table "google_tasks", :force => true do |t|
+    t.integer "task_id"
+    t.integer "user_id"
+    t.string  "google_id"
   end
 
   create_table "groups", :force => true do |t|
@@ -120,8 +118,10 @@ ActiveRecord::Schema.define(:version => 20121018044138) do
     t.date     "end_date"
     t.integer  "solution_id"
     t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.date     "scheduled_start_date"
+    t.date     "scheduled_end_date"
   end
 
   create_table "users", :force => true do |t|
@@ -129,11 +129,14 @@ ActiveRecord::Schema.define(:version => 20121018044138) do
     t.string   "email"
     t.string   "crypted_password"
     t.string   "salt"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.string   "name"
     t.string   "type"
-    t.integer  "slug"
+    t.string   "google_calendar_id"
+    t.string   "oauth_refresh_token"
+    t.string   "oauth_access_token"
+    t.integer  "oauth_expires_at"
   end
 
 end

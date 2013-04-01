@@ -225,6 +225,9 @@ pt:
       group:
         one: Grupo
         other: Grupos
+      task:
+        one: Tarefa
+        other: Tarefas
     attributes:
       professor:
         name: Nome
@@ -246,3 +249,8 @@ pt:
         name: Nome do Enunciado
         description: Descrição do enunciado
         end_date: Data de entrega
+      task:
+        description: Descrição
+        scheduled_start_date: Data de início programada
+        scheduled_end_date: Data de final programada
+

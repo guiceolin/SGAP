@@ -4,9 +4,17 @@
       %button.close{:type => 'button', :'data-dismiss'=>'modal'} &times;
       %h3 Nova Tarefa
     .modal-body
-      = f.input :description, label: 'Descrição'
+      = f.input :description
+      = f.input :scheduled_start_date, input_html: { class: 'datepicker'}
+
+      = f.input :scheduled_end_date, input_html: { class: 'datepicker'}
     .modal-footer
       = f.submit 'Criar', class: 'btn btn-primary'
+
+:javascript
+  $(function(){
+    $(".datepicker").datepicker({dateFormat: "yy-mm-dd"})
+  });
 
 .header.block
   .title
@@ -33,7 +41,7 @@
   .title
     %h2 Tarefas
   .actions
-    %button.btn.btn-primary{:type => "button",:'data-toggle'=>"modal",:'data-target'=>"#new-task-modal"} Nova Task
+    %button.btn.btn-primary{:type => "button",:'data-toggle'=>"modal",:'data-target'=>"#new-task-modal"} Nova Tarefa
   %br.clear
 
 .block
@@ -41,18 +49,24 @@
     %thead
       %tr
         %th Andamento
+        %th Data de início
+        %th Data de fim
         %th Descrição
         %th Ações
     %tbody
       - @solution.tasks.each do |task|
         %tr
-          %td.span3
+          %td.span2
             = "<span class='label label-success'>Concluída</span>".html_safe if task.completed?
             = "<span class='label label-warning'>Iniciada</span>".html_safe if task.started?
             = "<span class='label label-important'>Não iniciada</span>".html_safe unless task.completed? || task.started?
+          %td.span2
+            = task.started? ? l(task.start_date) : l(task.scheduled_start_date)
+          %td.span2
+            = task.completed? ? l(task.end_date) : l(task.scheduled_end_date)
           %td
             = task# link_to task, project_task_path(@project, task)
           %td.span3
-            = add_to_calendar task
+            = link_to content_tag(:i, "", class: 'icon-edit'), edit_students_crowd_enunciation_solution_task_path(@enunciation.crowd, @enunciation, task)
             = link_to "<i class='icon-stop'></i>".html_safe + ' Finalizar', students_crowd_enunciation_solution_complete_task_path(@enunciation.crowd, @enunciation, task), :method => :put if task.started? #&& can?(:manage, task)
             = link_to "<i class='icon-play'></i>".html_safe + ' Iniciar', students_crowd_enunciation_solution_start_task_path(@enunciation.crowd, @enunciation, task) ,:method => :put if !task.started? && !task.completed? #&& can?(:manage, task)

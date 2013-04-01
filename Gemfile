@@ -16,8 +16,12 @@ gem "active_model_serializers", :git => "git://github.com/josevalim/active_model
 gem "batman-rails"
 gem 'haml_assets'
 gem 'carrierwave'
+gem 'omniauth-google-oauth2'
+gem 'google-api-client', :require => 'google/api_client'
+
 
 group :development, :test do
+    gem 'rspec-rails'
     gem 'railroady'
 end
 
