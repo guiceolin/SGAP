@@ -1,7 +1,7 @@
 class Admin::StudentsController < ApplicationController
   respond_to :html, :json
   def index
-    @students = Student.search(params[:term])
+    @students = Student.search(params)
     respond_with :admin, @students, root: false
   end
 

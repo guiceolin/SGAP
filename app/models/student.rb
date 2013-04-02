@@ -7,7 +7,10 @@ class Student < User
   has_many :groups, through: :memberships
   has_many :solutions, through: :groups
 
-  def self.search(terms)
+  def self.search(param)
+    terms = param[:term]
+    crowd_id = param[:crowd_id]
+    enunciation_id = param[:enunciation_id]
 
     if terms.is_a? Hash
       query = scoped
@@ -16,7 +19,7 @@ class Student < User
       query = query.where("email LIKE ?", "%#{terms[:email]}%") if terms[:email].present?
       query
     elsif terms.present?
-      where("name LIKE :terms OR username LIKE :terms OR email LIKE :terms", terms: "%#{terms}%")
+      Crowd.where(name: crowd_id).first.students.where("users.name LIKE :terms OR users.username LIKE :terms OR users.email LIKE :terms", terms: "%#{terms}%").to_a - Enunciation.find(enunciation_id).groups.map(&:students).flatten.uniq
     else
       all
     end

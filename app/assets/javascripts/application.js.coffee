@@ -143,10 +143,10 @@ class Autocompleter
 
 class MembershipAutocompleter extends Autocompleter
   constructor: (@placeholder, @group, @minLenght = 2) ->
-    @source = '/admin/students/'
+    @source = "/admin/students/?crowd_id=#{@group.crowd_id}&enunciation_id=#{group.enunciation_id}"
     super(@placeholder, @source, @minLenght)
   show: (elem) ->
-    alert('b')
+    do window.location.reload
   select: (event, ui) =>
     elem = new Membership({student_id: ui.item.id, group_id: @group.id, group: @group})
     if elem.save()
