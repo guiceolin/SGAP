@@ -6,6 +6,26 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
+    %div.navbar.navbar-fixed-top.navbar-inverse
+      %div.navbar-inner
+        %div.container
+          %a.brand{href: '#'}
+            SGPA
+          %ul.nav
+            %li
+              = link_to "Mensagens", conversations_path
+          %ul.nav.pull-right
+            %li
+              %div.btn-group
+                = link_to content_tag(:i, "", class: 'icon-user icon-white'), edit_user_path(current_user) , class: "btn btn-info"
+                = link_to current_user.name, edit_user_path(current_user), class: "btn btn-info"
+            %li
+              %div.btn-group
+                = link_to "Sair", logout_path, class: "btn btn-info"
+
     .content
-      = breadcrumb(request.path)
-      = yield
+      .fluid-row
+        .span3
+          MENU
+        .span9
+          = yield
