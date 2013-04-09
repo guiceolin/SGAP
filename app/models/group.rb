@@ -26,6 +26,10 @@ class Group < ActiveRecord::Base
     name
   end
 
+  def as_scope
+    "#{self.to_param} - #{name}"
+  end
+
   def participations
     students
   end
