@@ -12,7 +12,7 @@ gem 'simple_form'
 gem 'haml'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'pry-rails'
-gem "active_model_serializers", :git => "git://github.com/josevalim/active_model_serializers.git"
+gem "active_model_serializers", "~> 0.7.0"
 gem "batman-rails"
 gem 'haml_assets'
 gem 'carrierwave'
