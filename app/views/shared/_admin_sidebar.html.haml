@@ -1,64 +1,62 @@
-%div.sidebarbg
-%div.sidebar
-  %ul#menu
-    %li.accordion-group
-      .accordion-heading
-        %a.accordion-toggle{'data-toggle' => "collapse", 'data-parent'=> "#menu", :href => "#menu-crowds" }
-          %h3= Crowd.model_name.human(count: :many)
-      #menu-crowds.accordion-body.collapse{ class: controller_name == "crowds" ? :in : ''}
-        .accordion-inner
-          %ul
-            %li
-              = link_to "Nova Turma", new_admin_crowd_path
-            %li
-              = link_to "Todas as Turmas", admin_crowds_path
-    %li.accordion-group
-      .accordion-heading
-        %a.accordion-toggle{'data-toggle' => "collapse", 'data-parent'=> "#menu", :href => "#menu-subjects" }
-          %h3= Subject.model_name.human(count: :many)
-      #menu-subjects.accordion-body.collapse{ class: controller_name == 'subjects' ? :in : :out}
-        .accordion-inner
-          %ul
-            %li
-              = link_to "Nova Disciplina", new_admin_subject_path
-            %li
-              = link_to "Todas as Disciplinas",admin_subjects_path
-    %li.accordion-group
-      .accordion-heading
-        %a.accordion-toggle{'data-toggle' => "collapse", 'data-parent'=> "#menu", :href => "#menu-professors" }
-          %h3= Professor.model_name.human(count: :many)
-      #menu-professors.accordion-body.collapse{ class: controller_name == 'professors' ? :in : :out}
-        .accordion-inner
-          %ul
-            %li
-              = link_to "Novo Professor", new_admin_professor_path
-            %li
-              = link_to "Todos os professores", admin_professors_path
+%ul#menu
+  %li.accordion-group
+    .accordion-heading
+      %a.accordion-toggle{'data-toggle' => "collapse", 'data-parent'=> "#menu", :href => "#menu-crowds" }
+        %h3= Crowd.model_name.human(count: :many)
+    #menu-crowds.accordion-body.collapse{ class: controller_name == "crowds" ? :in : ''}
+      .accordion-inner
+        %ul
+          %li
+            = link_to "Nova Turma", new_admin_crowd_path
+          %li
+            = link_to "Todas as Turmas", admin_crowds_path
+  %li.accordion-group
+    .accordion-heading
+      %a.accordion-toggle{'data-toggle' => "collapse", 'data-parent'=> "#menu", :href => "#menu-subjects" }
+        %h3= Subject.model_name.human(count: :many)
+    #menu-subjects.accordion-body.collapse{ class: controller_name == 'subjects' ? :in : :out}
+      .accordion-inner
+        %ul
+          %li
+            = link_to "Nova Disciplina", new_admin_subject_path
+          %li
+            = link_to "Todas as Disciplinas",admin_subjects_path
+  %li.accordion-group
+    .accordion-heading
+      %a.accordion-toggle{'data-toggle' => "collapse", 'data-parent'=> "#menu", :href => "#menu-professors" }
+        %h3= Professor.model_name.human(count: :many)
+    #menu-professors.accordion-body.collapse{ class: controller_name == 'professors' ? :in : :out}
+      .accordion-inner
+        %ul
+          %li
+            = link_to "Novo Professor", new_admin_professor_path
+          %li
+            = link_to "Todos os professores", admin_professors_path
 
-    %li.accordion-group
-      .accordion-heading
-        %a.accordion-toggle{'data-toggle' => "collapse", 'data-parent'=> "#menu", :href => "#menu-students" }
-          %h3= Student.model_name.human(count: :many)
-      #menu-students.accordion-body.collapse{ class: controller_name == 'students' ? :in : :out}
-        .accordion-inner
-          %ul
-            %li
-              = link_to "Novo Aluno", new_admin_student_path
-            %li
-              = link_to "Todos os professores", admin_students_path
+  %li.accordion-group
+    .accordion-heading
+      %a.accordion-toggle{'data-toggle' => "collapse", 'data-parent'=> "#menu", :href => "#menu-students" }
+        %h3= Student.model_name.human(count: :many)
+    #menu-students.accordion-body.collapse{ class: controller_name == 'students' ? :in : :out}
+      .accordion-inner
+        %ul
+          %li
+            = link_to "Novo Aluno", new_admin_student_path
+          %li
+            = link_to "Todos os professores", admin_students_path
 
-    %li.accordion-group
-      .accordion-heading
-        %a.accordion-toggle{'data-toggle' => "collapse", 'data-parent'=> "#menu", :href => "#menu-imports" }
-          %h3 Importar
-      #menu-imports.accordion-body.collapse{ class: controller_name == 'imports' ? :in : :out}
-        .accordion-inner
-          %ul
-            %li
-              = link_to "Aluno", new_admin_import_path(:resource => :students)
-            %li
-              = link_to "Professor", new_admin_import_path(:resource => :professors)
-            %li
-              = link_to "Disciplina", new_admin_import_path(:resource => :subjects)
-            %li
-              = link_to "Turmas", new_admin_import_path(:resource => :crowds)
+  %li.accordion-group
+    .accordion-heading
+      %a.accordion-toggle{'data-toggle' => "collapse", 'data-parent'=> "#menu", :href => "#menu-imports" }
+        %h3 Importar
+    #menu-imports.accordion-body.collapse{ class: controller_name == 'imports' ? :in : :out}
+      .accordion-inner
+        %ul
+          %li
+            = link_to "Aluno", new_admin_import_path(:resource => :students)
+          %li
+            = link_to "Professor", new_admin_import_path(:resource => :professors)
+          %li
+            = link_to "Disciplina", new_admin_import_path(:resource => :subjects)
+          %li
+            = link_to "Turmas", new_admin_import_path(:resource => :crowds)

@@ -23,7 +23,9 @@
               %div.btn-group
                 = link_to "Sair", logout_path, class: "btn btn-info"
     %div.wrapper
-      = render partial: "shared/#{current_user.type.downcase}_sidebar"
+      %div.sidebarbg
+      %div.sidebar
+        = render partial: "shared/#{current_user.type.downcase}_sidebar"
       %div#content.clearfix
         %div#content-wrapper
           = yield
