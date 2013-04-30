@@ -13,44 +13,75 @@
  *= require_self
  * require_tree .
  */
+*
+  -webkit-box-sizing: border-box
+  -moz-box-sizing: border-box
+  box-sizing: border-box
 
-.clear
-  clear: both
-
-body
-  //background: image-url('wood-background.jpg')
-  background: #3399CC
-  > div.content
-    //background-color: white
-    margin: 40px auto
-    padding: 15px
-    width: 80%
-    min-height: 800px
-    div.block
-      background: white
-      padding: 10px
-      margin-bottom: 20px
-    > div.header
-      > div.title
+html
+  height: 100%
+  body
+    box-sizing: border-box
+    padding-top: 40px
+    height: 100%
+    //background: image-url('wood-background.jpg')
+    //background: #3399CC
+    > div.wrapper
+      height: 100%
+      min-height: 100%
+      position: relative
+      > div.sidebarbg
+        border: solid 1px #DDD
+        width: 270px
+        z-index: 0
+        position: absolute
+        left: 0
+        top: 0
+        bottom: 0
+        background: image-url('sidebarbg.png') repeat
+      > div.sidebar
+        position: relative
         float: left
-        > h1
-          float: left
-      > div.actions
-        float: right
-    > div.body
+        width: 270px
+        z-index: 1
+        > ul#menu
+          margin: 0
+          list-style-type: none
+          > li
+            border: none
+            margin: 0
+            > div.accordion-heading
+              font-weight: bold
+              border-bottom: 1px solid #ddd
+              &:hover
+                background: -moz-linear-gradient(top, #fff, #ddd) repeat-X
+                background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee)) repeat-X
+                a
+                  text-decoration: none
+            > div.accordion-body
+              background-color: white
+              > div.accordion-inner
+                border-bottom: 1px solid #ddd
+                margin-bottom: 0
 
-  ul#listings
-    list-style-type: none
-    margin: 0
-    li:hover
-      background: whitesmoke
-    li
-      line-height: 18px
-      border-top: 1px solid #DDD
-      padding: 3px
-      > a
-        > p
-          display: inline
-        > div.js-message-scope
-          display: inline
-          float: right
+
+      > div#content
+        padding-left: 280px
+        > div#content-wrapper
+          margin-top: 20px
+
+    ul#listings
+      list-style-type: none
+      margin: 0
+      li:hover
+        background: whitesmoke
+      li
+        line-height: 18px
+        border-top: 1px solid #DDD
+        padding: 3px
+        > a
+          > p
+            display: inline
+          > div.js-message-scope
+            display: inline
+            float: right

@@ -22,10 +22,8 @@
             %li
               %div.btn-group
                 = link_to "Sair", logout_path, class: "btn btn-info"
-
-    .content
-      .fluid-row
-        .span3
-          MENU
-        .span9
+    %div.wrapper
+      = render partial: "shared/#{current_user.type.downcase}_sidebar"
+      %div#content.clearfix
+        %div#content-wrapper
           = yield
