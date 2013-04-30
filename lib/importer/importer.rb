@@ -1,4 +1,4 @@
-require 'CSV'
+require 'csv'
 class Importer
   def import(file)
     ::CSV.foreach(file) do |row|
@@ -11,7 +11,7 @@ class Importer
 end
 
 class SubjectImporter < Importer
-   def add(arry)
+  def add(arry)
     raise Importer::InvalidFormatException.new if arry.size != 3
     attr = {}
     attr[:code], attr[:name], attr[:description] = arry

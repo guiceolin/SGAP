@@ -1,7 +1,9 @@
 require 'importer'
 class Admin::ImportsController < ApplicationController
 
-  def new; end
+  def new
+    render "#{params[:resource]}"
+  end
 
   def create
     case params[:resource]
@@ -17,6 +19,6 @@ class Admin::ImportsController < ApplicationController
       raise 'Parametro Invalido'
     end
     importer.import(params[:csv_file].tempfile)
-    redirect_to new_admin_import_path
+    redirect_to new_admin_import_path(resource: params[:resource])
   end
 end
