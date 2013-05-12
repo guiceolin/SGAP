@@ -29,6 +29,8 @@
 
 #= require_tree .
 $ ->
+  $('a.accordion-toggle').on 'click', (e)->
+    $(this).parent().find('i').toggle()
   $('#base-tr').hide()
 
   $('.goto').each (i,node) ->
