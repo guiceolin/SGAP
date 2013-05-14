@@ -1,8 +1,6 @@
-.header.block
-  %h1
-    Editando Grupo da #{@group.enunciation.name}
-.block
-  = simple_form_for [:professor, @current_subject, @current_crowd, @current_enunciation, @group] , html: { class: 'form-horizontal' } do |f|
-    = render :partial => 'form', locals: { f:f }
-    .form-actions
-      = f.submit class: 'btn btn-primary'
+%h1.span10
+  Editando Grupo da #{@group.enunciation.name}
+= simple_form_for [:professor, @current_subject, @current_crowd, @current_enunciation, @group] , html: { class: 'form-horizontal span10' } do |f|
+  = render :partial => 'form', locals: { f:f }
+  .form-actions
+    = f.submit class: 'btn btn-primary'

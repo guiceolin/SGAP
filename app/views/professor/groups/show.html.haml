@@ -3,50 +3,43 @@
     //window.currentGroup = new Group(#{@group.attributes.to_json});
     new MembershipAutocompleter($("#autocomplete"), #{@group.attributes.merge!(:crowd_id => @group.crowd.name).merge!(:subject_id => @group.crowd.subject.name).to_json} )
     });
-.header.block
-  %h1= @group.name
-.block
-  %h2= Student.model_name.human count: :many
-  %input#autocomplete{:placeholder => 'Adicionar'}
-  %table.table.table-stripped.table-condensed#students-table
-    %thead
+%h1.span10= @group.name
+
+%h3.span10= Student.model_name.human count: :many
+%form.form-inline.span10
+  %label Buscar:
+  %input#autocomplete{:placeholder => 'RA'}
+%table.table.table-stripped.table-condensed.span10#students-table
+  %thead
+    %tr
+      %th
+        = Student.human_attribute_name(:name, count: :one)
+      %th
+  %tbody
+    %tr#base-tr
+      %td
+    - @group.memberships.each do |m|
       %tr
-        %th
-          = Student.human_attribute_name(:name, count: :one)
-        %th
-    %tbody
-      %tr#base-tr
         %td
-      - @group.memberships.each do |m|
-        %tr
-          %td
-            = link_to m.student.name, {}#professor_student_path(m.student)
-          %td
-            = link_to content_tag(:i, '', class: 'icon-remove'), professor_subject_crowd_enunciation_group_membership_path(@current_subject, @current_crowd, @group.enunciation, @group, m), method: :delete, confirm: "Tem certeza?"
+          = link_to m.student.name, {}#professor_student_path(m.student)
+        %td
+          = link_to content_tag(:i, '', class: 'icon-remove'), professor_subject_crowd_enunciation_group_membership_path(@current_subject, @current_crowd, @group.enunciation, @group, m), method: :delete, confirm: "Tem certeza?"
 
-.block.header
-  .title
-    %h1 Solução
-  %br.clear
+%h3.span10 Solução
 
-.block.header
-  .title
-    %h2 Tarefas
-  .actions
-  %br.clear
+%h3.span10 Tarefas
 
-.block
-  %table.table
-    %thead
+%table.table.span10
+  %thead
+    %tr
+      %th Andamento
+      %th Descrição
+  %tbody
+    - @group.solution.tasks.each do |task|
       %tr
-        %th Andamento
-        %th Descrição
-    %tbody
-      - @group.solution.tasks.each do |task|
-        %tr
-          %td.span3
-            = "<span class='label label-success'>Concluída</span>".html_safe if task.completed?
-            = "<span class='label label-warning'>Iniciada</span>".html_safe if task.started?
-            = "<span class='label label-important'>Não iniciada</span>".html_safe unless task.completed? || task.started?
-          %td
-            = task# link_to task, project_task_path(@project, task)
+        %td.span3
+          = "<span class='label label-success'>Concluída</span>".html_safe if task.completed?
+          = "<span class='label label-warning'>Iniciada</span>".html_safe if task.started?
+          = "<span class='label label-important'>Não iniciada</span>".html_safe unless task.completed? || task.started?
+        %td
+          = task# link_to task, project_task_path(@project, task)
