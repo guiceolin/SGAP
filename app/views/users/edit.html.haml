@@ -1,5 +1,5 @@
-.well
-  %h2= t('.edit')
+.well.span10
+  %h2 Editar seus dados
   = simple_form_for @user, url: users_path, method: :put do |f|
     = render partial: 'form', locals: { f: f }
     .form-actions
