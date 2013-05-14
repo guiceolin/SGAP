@@ -1,57 +1,46 @@
-#cloneModal.modal.hide.fade
-  = form_tag "/professor/clone_enunciations/#{@enunciation.id}", method: :get, class: 'form-inline' do
-    .modal-header
-      %button.close{:type => 'button', :'data-dismiss'=>'modal'} &times;
-      %h3 Clonar Enunciado
-    .modal-body
-      Selecione a Turma:
-      = select_tag "crowd_id", options_from_collection_for_select(@current_user.crowds, "id", "name")
-    .modal-footer
-      = submit_tag 'Clonar', class: 'btn btn-primary'
-
-.header.block
-  .title
-    %h1= @enunciation.name
-  .actions
+%h1.span10
+  = @enunciation.name
+  \-
+  = l @enunciation.end_date
+  %span.pull-right
     %button.btn.btn-primary{:type => "button",:'data-toggle'=>"modal",:'data-target'=>"#cloneModal"} Clonar
-  %br.clear
-.block
-  %h2= Enunciation.human_attribute_name :description
-  %p= @enunciation.description
-  %h2= Enunciation.human_attribute_name :end_date
-  %p= l @enunciation.end_date
+%p.span10
+  = @enunciation.description
 
-.block.header
-  .title
-    %h2= Group.model_name.human count: :many
-  .actions
-    =link_to "Novo Grupo", new_professor_subject_crowd_enunciation_group_path(@enunciation.crowd.subject, @enunciation.crowd, @enunciation), class: 'btn btn-primary'
-  %br.clear
-  %table.table.table-stripped.table-condensed
-    %thead
+%h2.span10
+  = Group.model_name.human count: :many
+  %span.pull-right=link_to "Novo Grupo", new_professor_subject_crowd_enunciation_group_path(@enunciation.crowd.subject, @enunciation.crowd, @enunciation), class: 'btn btn-primary'
+%table.table.table-stripped.table-condensed.span10
+  %thead
+    %tr
+      %th
+        = Group.human_attribute_name(:name, count: :one)
+      %th
+      %th
+      %th
+  %tbody
+    - @enunciation.groups.each do |g|
       %tr
-        %th
-          = Group.human_attribute_name(:name, count: :one)
-        %th
-        %th
-        %th
-    %tbody
-      - @enunciation.groups.each do |g|
-        %tr
-          %td
-            =link_to g.name, professor_subject_crowd_enunciation_group_path(@enunciation.crowd.subject, @enunciation.crowd, @enunciation, g)
-          %td
-          %td
-          %td
-            = link_to content_tag(:i, '', class: 'icon-pencil'), edit_professor_subject_crowd_enunciation_group_path(@enunciation.crowd.subject, @enunciation.crowd, g.enunciation, g)
-            = link_to content_tag(:i, '', class: 'icon-remove'), professor_subject_crowd_enunciation_group_path(@enunciation.crowd.subject, @enunciation.crowd, g.enunciation, g), method: :delete, confirm: "Tem Certeza?"
+        %td
+          =link_to g.name, professor_subject_crowd_enunciation_group_path(@enunciation.crowd.subject, @enunciation.crowd, @enunciation, g)
+        %td
+        %td
+        %td
+          = link_to content_tag(:i, '', class: 'icon-pencil'), edit_professor_subject_crowd_enunciation_group_path(@enunciation.crowd.subject, @enunciation.crowd, g.enunciation, g)
+          = link_to content_tag(:i, '', class: 'icon-remove'), professor_subject_crowd_enunciation_group_path(@enunciation.crowd.subject, @enunciation.crowd, g.enunciation, g), method: :delete, confirm: "Tem Certeza?"
 
-.block.header
-  %h2 Anexo
-  %p Novo
-  = form_tag professor_subject_crowd_enunciation_attachments_path(@enunciation.crowd.subject, @enunciation.crowd, @enunciation), method: 'POST', multipart: true do
-    = file_field_tag 'file'
-    = submit_tag 'submit'
-  - @enunciation.attachments.each do |a|
-    %p
-      %a{:href => a.file.url }= a.file_identifier
+%h2.span10
+  Anexos
+
+= form_tag professor_subject_crowd_enunciation_attachments_path(@enunciation.crowd.subject, @enunciation.crowd, @enunciation), method: 'POST', multipart: true, class: 'form-inline span10' do
+  = file_field_tag 'file'
+  = submit_tag 'Adicionar', class: "btn btn-primary"
+%div.span10
+  %ul
+    - @enunciation.attachments.each do |a|
+      %li
+        %p
+          %a{:href => a.file.url }= a.file_identifier
+
+
+= render 'clone'
