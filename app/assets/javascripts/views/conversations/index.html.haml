@@ -1,10 +1,7 @@
-.block.header
-  .title{'style' =>'float:left;'}
-    %h2 Conversas
-  .actions{'style' => 'float:right;'}
-    %a.btn.btn-primary{:href => '/conversation_approvations/'}Moderar
-  %br.clear
-.block
+%div.span10
+  %h2.pull-left Conversas
+  %a.pull-right.btn.btn-primary{:href => '/conversation_approvations/'}Moderar
+%div.span10
   %ul#listings
     %li{'data-foreach-conversation' => "conversations", 'data-route' => 'conversation' }
       %a{ 'data-route'=>'conversation' }
@@ -18,7 +15,7 @@
 
         %p
           %span{ 'data-foreach-user'=>'conversation.users', 'data-bind'=>'user.username | append " "'}
-.block
+%div.span10
   %h2 Nova Conversa
   %form{'data-formfor-conversation' => 'newConversation', 'data-event-submit' => 'create'}
     %input{ 'data-bind' => 'conversation.topic', :placeholder => 'Tópico'}
@@ -28,4 +25,4 @@
     %select{ 'data-bind' => 'selectedScope.id' }
       %option{ :value=> ''}Selecione
       %option{'data-foreach-scope' => 'scopes','data-bind' => 'scope.name', 'data-bind-value' => 'scope.id', 'data-bind-selected' => 'scopes.first'}
-    %input{:type => 'submit'}
+    %input{:type => 'submit', :value => 'Enviar'}

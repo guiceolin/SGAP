@@ -16,7 +16,8 @@ class Professor::GroupsController < ApplicationController
 
   def create
     @group = Group.create(params[:group])
-    @group.enunciation = Enunciation.find_by_name(params[:enunciation_id])
+    @group.enunciation = current_enunciation
+    binding.pry
     @group.save
     respond_with :professor, current_subject, current_crowd, current_enunciation, @group
   end

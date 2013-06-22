@@ -1,7 +1,7 @@
 - @crowds.each do |c|
   %tr
     %td
-      =link_to c.name, admin_crowd_path(c)
+      =link_to c.name, admin_subject_crowd_path(c.subject, c)
     %td
       =link_to c.subject, admin_subject_path(c.subject)
     %td

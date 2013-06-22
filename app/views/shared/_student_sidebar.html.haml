@@ -1,0 +1,36 @@
+%ul#menu
+  %li.accordion-group
+    .accordion-heading
+      %a.accordion-toggle{'data-toggle' => "collapse", 'data-parent'=> "#menu", :href => "#menu-subjects", style: 'display:inline-block;' }
+        %i.icon-plus
+        %i.icon-minus{style: 'display:none;'}
+        = Subject.model_name.human(count: :many)
+    #menu-subjects.accordion-body.collapse{ class: %w{subjects}.include?(controller_name) ? :in : ''}
+      .accordion-inner
+        %ul{style: 'list-style-type: none'}
+          - current_user.crowds.group_by(&:subject).each_pair do |subject, crowds|
+            %li
+              %ul{class: "subject-#{subject.id}"}
+                %li.accordion-group
+                  .accordion-heading
+                    %a.accordion-toggle{'data-toggle' => "collapse", 'data-parent'=> "#subject-#{subject.id}", :href => ".menu-subjects-#{subject.id}", style: 'display:inline-block;' }
+                      %i.icon-plus
+                      %i.icon-minus{style: 'display:none;'}
+                      = subject.name
+                  .menu-crowds.accordion-body.collapse{ class: "menu-subjects-#{subject.id} #{controller_name == "crowds" ? :in : ''}"}
+                    .accordion-inner
+                      %ul
+                        - crowds.each do |crowd|
+                          %li
+                            %ul{class: "crowd-#{crowd.id}"}
+                              %li.accordion-group
+                                .accordion-heading
+                                  %a.accordion-toggle{'data-toggle' => 'collapse', 'data-parent' => ".crowd-#{crowd.id}", :href => ".menu-crowds-#{crowd.id}", style: 'display:inline-block'}
+                                    %i.icon-plus
+                                    %i.icon-minus{style: 'display:none;'}
+                                    =crowd.name
+                                .accordion-body.collapse{class: "menu-crowds-#{crowd.id} #{controller_name == "enunciations" ? :in : ''} "}
+                                  %ul
+                                    -crowd.enunciations.each do |enunciation|
+                                      %li.enunciation
+                                        = link_to enunciation.name, students_crowd_enunciation_path(crowd, enunciation)

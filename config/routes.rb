@@ -46,18 +46,24 @@ SGAP::Application.routes.draw do
     end
   end
   namespace :admin do
+    resources :crowds, only: [:index]
     resources :imports, only: [:new, :create]
     resources :enrollments, only: :create
-    resources :students, :subjects, :professors do
+    resources :students, :professors do
       collection do
         get :search
       end
     end
-    resources :crowds do
+    resources :subjects do
       collection do
         get :search
       end
-      resources :enrollments
+      resources :crowds do
+        collection do
+          get :search
+        end
+        resources :enrollments
+      end
     end
   end
 

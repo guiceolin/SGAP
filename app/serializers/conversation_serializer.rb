@@ -9,7 +9,8 @@ class ConversationSerializer < ActiveModel::Serializer
   end
 
   def participations
-    conversation.participations.where(user_id: scope)
+    #conversation.participations.where(user_id: scope)
+    object.participations.where(user_id: scope)
   end
 
   #def messages

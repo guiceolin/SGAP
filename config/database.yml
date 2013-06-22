@@ -9,7 +9,7 @@ development:
   reconnect: false
   database: sgap_dev
   pool: 5
-  username: sgap
+  username: sgap_dev
   password: "q1w2e3r4"
   host: 127.0.0.1
 
