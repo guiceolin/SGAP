@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'jquery-rails'
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.17'
 gem "mysql2"
 
 # Bundle edge Rails instead:
